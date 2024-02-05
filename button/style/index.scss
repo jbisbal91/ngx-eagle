@@ -1,0 +1,88 @@
+.ngx-button {
+  box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  color: inherit;
+  background: none;
+  font-family: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  gap: 0.25rem;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  outline: none;
+  -webkit-appearance: none;
+  position: relative;
+  transition: color 0.2s ease-in-out;
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.ngx-button.ngx-button-sm {
+  font-size: 0.875rem;
+  line-height: 1.4285714286;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  height: 1.5rem;
+}
+
+.ngx-button.ngx-button-md {
+  font-size: 0.875rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  height: 2rem;
+}
+
+.ngx-button.ngx-button-lg {
+  font-size: 1rem;
+  line-height: 1.5;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  height: 2.5rem;
+}
+
+.ngx-button.ngx-rounded-sm {
+  border-radius: 2px;
+}
+
+.ngx-button.ngx-rounded-md {
+  border-radius: 4px;
+}
+
+.ngx-button.ngx-rounded-lg {
+  border-radius: 6px;
+}
+
+.ngx-button.ngx-rounded-full {
+  border-radius: 9999px;
+}
+
+.ngx-button.ngx-button-filled {
+  border: none;
+  background-color: var(--ngx-comp-button-filled-bg-color);
+  color: var(--ngx-comp-button-filled-color);
+}
+
+.ngx-button.ngx-button-outlined {
+  border-color: var(--ngx-comp-button-outlined-border-color);
+  color: var(--ngx-comp-button-outlined-color);
+}
+
+.ngx-button.ngx-button-text {
+  border: none;
+  background-color: transparent;
+  color: var(--ngx-comp-button-text-color);
+}
+
+.ngx-button.ngx-button-elevated {
+  border: none;
+  background-color: var(--ngx-comp-button-elevated-bg-color);
+  color: var(--ngx-comp-button-elevated-color);
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+}

@@ -1,0 +1,30 @@
+.ngx-divider {
+  display: flex;
+  color: #6b727c;
+  font-weight: 500;
+  font-size: 16px;
+  white-space: nowrap;
+  text-align: center;
+  border-top: 0;
+  border-top-color: #6b727c;
+  align-items: center;
+
+  &:before,
+  &:after {
+    position: relative;
+    top: 50%;
+    width: 50%;
+    border-top: 1px solid transparent;
+    border-top-color: transparent;
+    border-top-color: inherit;
+    border-bottom: 0;
+    content: "";
+  }
+}
+
+.ngx-divider span {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  padding-left: 0.625rem;
+  padding-right: 0.625rem;
+}

@@ -1,0 +1,63 @@
+.ngx-tag {
+  box-sizing: border-box;
+  font-size: 0.875rem;
+  line-height: 1.5715;
+  list-style: none;
+  font-feature-settings: "tnum";
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  padding: 0 0.4375rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  white-space: nowrap;
+  border-radius: 2px;
+  opacity: 1;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.ngx-tag .ngx-tag-close {
+  margin-left: 3px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.ngx-tag .ngx-tag-icon-sync {
+  animation: loadingCircle 1s infinite linear;
+}
+
+@keyframes loadingCircle {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ngx-tag .ngx-tag-has-color {
+  border-color: transparent;
+}
+
+.ngx-tag-has-color,
+.ngx-tag-has-color a,
+.ngx-tag-has-color a:hover,
+.ngx-tag-has-color .ngx-tag-has-color {
+  color: #fff;
+}
+
+.ngx-tag-sync,
+.ngx-tag-checkable {
+  cursor: pointer;
+  border-color: transparent;
+  color: #1890ff;
+}
+
+.ngx-tag-default {
+  border: 1px solid currentColor;
+}
+
+.ngx-tag-checkable:active,
+.ngx-tag-checkable-checked {
+  color: #fff;
+  background-color: #1890ff !important;
+}

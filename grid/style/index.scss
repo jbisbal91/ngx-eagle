@@ -1,0 +1,46 @@
+.ngx-row {
+  display: flex;
+  flex-flow: row;
+}
+
+.ngx-col {
+  position: relative;
+  max-width: 100%;
+  min-height: 1px;
+}
+
+.ngx-row-start {
+  justify-content: start;
+}
+
+.ngx-row-end {
+  justify-content: end;
+}
+
+.ngx-row-center {
+  justify-content: center;
+}
+
+.ngx-row-space-around {
+  justify-content: space-around;
+}
+
+.ngx-row-space-between {
+  justify-content: space-between;
+}
+
+.ngx-row-space-evenly {
+  justify-content: space-evenly;
+}
+
+.ngx-row-top {
+  align-items: flex-start;
+}
+
+.ngx-row-middle {
+  align-items: center;
+}
+
+.ngx-row-bottom {
+  align-items: flex-end;
+}

@@ -1,0 +1,67 @@
+.ngx-expansion-panel {
+  width: 100%;
+}
+
+.ngx-expansion-panel.card-epanel {
+  color: var(--ngx-theme-color-epanel);
+}
+
+.card-epanel.card-bg {
+  background-color: var(--ngx-theme-bg-epanel);
+}
+
+.card-epanel .rotate {
+  rotate: 180deg;
+  transition: rotate 0.2s ease-out;
+}
+
+.card-epanel .no-rotate {
+  rotate: 0deg;
+  transition: rotate 0.2s ease-out;
+}
+
+.card-epanel.box-shadow {
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+.card-epanel.mt-4 {
+  margin-top: 1rem;
+  /* 16px */
+}
+
+.card-epanel.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.card-epanel.p-4 {
+  p: 1rem;
+}
+
+.card-epanel .arrow {
+  filter: var(--ngx-theme-filter-epanel-arrow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-epanel .divider {
+  border-top: 1px solid;
+}
+
+.card-epanel.rounded-lg {
+  border-radius: 0.5rem;
+  /* 8px */
+}
+
+.card-epanel .card-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  height: 2.5rem;
+  width: 100%;
+  align-items: center;
+}

@@ -1,0 +1,45 @@
+.ngx-card {
+  background: var(--ngx-theme-bg-card);
+  border-radius: 0.5rem;
+  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.ngx-card-avatar {
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ngx-card-image {
+  position: relative;
+  box-sizing: border-box;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.ngx-card-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 3.25rem;
+  padding: 1rem;
+}
+
+.ngx-card-content {
+  display: block;
+  padding: 0 1rem;
+}
+
+.ngx-card-header {
+  display: flex;
+  padding: 1rem 1rem 0;
+}

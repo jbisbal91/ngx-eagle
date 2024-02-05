@@ -1,0 +1,102 @@
+.ngx-table {
+    width: 100%;
+    border-spacing: 0px;
+    margin-bottom: 0;
+}
+
+.ngx-table thead {
+    background-color: var(--ngx-comp-table-header-background-color);
+    position: sticky;
+    top: 0;
+    font-weight: 600;
+    z-index: 100;
+}
+
+.ngx-table>.arrow-asc-icon,
+.ngx-table>.arrow-desc-icon {
+    display: inline-block;
+    height: 0.875rem;
+    width: 0.75rem;
+    cursor: pointer;
+}
+
+.ngx-table .arrow-asc-icon {
+    background: url(/assets/icons/arrow_asc_fill.svg) no-repeat center;
+}
+
+.ngx-table .arrow-desc-icon {
+    background: url(/assets/icons/arrow_desc_fill.svg) no-repeat center;
+}
+
+.ngx-table th,
+.ngx-table td {
+    text-align: left;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    border-bottom: 1px solid #dddddd;
+    font-size: 0.875rem;
+}
+
+.ngx-table-bordered .ngx-column-group th {
+    border-bottom: none;
+}
+
+/*** Start of border styles for ngx-table ***/
+/* Style for cells (th and td) of the ngx-table-bordered table with right border */
+.ngx-table-bordered th,
+.ngx-table-bordered td {
+    border-right: 1px solid #dddddd;
+}
+
+/* Style for the first cell (th and td) of the ngx-table-bordered table with left border */
+.ngx-table-bordered th:first-child,
+.ngx-table-bordered td:first-child {
+    border-left: 1px solid #dddddd;
+}
+
+/* Style for th cells of the ngx-table-bordered table with top border */
+.ngx-table-bordered th {
+    border-top: 1px solid #dddddd;
+}
+
+/*** End of border styles for ngx-table ***/
+.ngx-table td {
+    border-bottom: 1px solid #dddddd;
+    white-space: nowrap;
+}
+
+.ngx-table thead>tr,
+.ngx-table tbody>tr {
+    height: 3rem;
+}
+
+.ngx-table tbody>tr:hover {
+    cursor: default;
+    background-color: var(--ngx-comp-table-header-background-color);
+    transition: all 0.3s;
+}
+
+.ngx-table .table-empty {
+    height: 16rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Barra de desplazamiento */
+
+.table-container::-webkit-scrollbar {
+    width: 8px;
+    /* Ancho para ambos scrolls */
+    height: 8px;
+    /* Altura para ambos scrolls */
+    background-color: #F1F1F1;
+    border-radius: 10px;
+    /* Radio de borde para ambos scrolls */
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background-color: #C1C1C1;
+    border-radius: 10px;
+    /* Radio de borde para ambos scrolls */
+}
