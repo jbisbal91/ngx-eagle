@@ -1,38 +1,27 @@
 .ngx-table {
+    margin: 0;
     width: 100%;
-    border-spacing: 0px;
-    margin-bottom: 0;
+    max-width: none;
+    border-width: 0;
+    border-color: inherit;
+    border-collapse: separate;
+    border-spacing: 0;
+    empty-cells: show;
 }
 
 .ngx-table thead {
-    background-color: var(--ngx-comp-table-header-background-color);
+    background-color: var(--table-thead-background-color, #f5f5f5);
     position: sticky;
     top: 0;
     font-weight: 600;
     z-index: 100;
 }
 
-.ngx-table>.arrow-asc-icon,
-.ngx-table>.arrow-desc-icon {
-    display: inline-block;
-    height: 0.875rem;
-    width: 0.75rem;
-    cursor: pointer;
-}
-
-.ngx-table .arrow-asc-icon {
-    background: url(/assets/icons/arrow_asc_fill.svg) no-repeat center;
-}
-
-.ngx-table .arrow-desc-icon {
-    background: url(/assets/icons/arrow_desc_fill.svg) no-repeat center;
-}
-
 .ngx-table th,
 .ngx-table td {
     text-align: left;
     padding-left: 0.5rem;
-    padding-right: 0.5rem;
+    padding-right: 1.5rem;
     border-bottom: 1px solid #dddddd;
     font-size: 0.875rem;
 }
@@ -46,6 +35,7 @@
 .ngx-table-bordered th,
 .ngx-table-bordered td {
     border-right: 1px solid #dddddd;
+    min-width: 3.125rem;
 }
 
 /* Style for the first cell (th and td) of the ngx-table-bordered table with left border */
@@ -60,9 +50,16 @@
 }
 
 /*** End of border styles for ngx-table ***/
+.ngx-table th {    
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .ngx-table td {
     border-bottom: 1px solid #dddddd;
-    white-space: nowrap;
+    white-space: break-spaces;
 }
 
 .ngx-table thead>tr,
@@ -72,7 +69,7 @@
 
 .ngx-table tbody>tr:hover {
     cursor: default;
-    background-color: var(--ngx-comp-table-header-background-color);
+    background-color: var(--table-tr-hover-background-color, #f5f5f5);
     transition: all 0.3s;
 }
 
@@ -84,8 +81,7 @@
 }
 
 /* Barra de desplazamiento */
-
-.table-container::-webkit-scrollbar {
+.ngx-table-container::-webkit-scrollbar {
     width: 8px;
     /* Ancho para ambos scrolls */
     height: 8px;
@@ -95,8 +91,65 @@
     /* Radio de borde para ambos scrolls */
 }
 
-.table-container::-webkit-scrollbar-thumb {
+.ngx-table-container::-webkit-scrollbar-thumb {
     background-color: #C1C1C1;
     border-radius: 10px;
     /* Radio de borde para ambos scrolls */
+}
+
+.ngx-table .ngx-th-sort-arrow {
+    cursor: pointer;
+}
+
+.ngx-table .ngx-sort-arrow {
+    width: 8px;
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    flex-direction: column;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    right: 0.5rem;
+    transform: translate(-50%, -50%);
+}
+
+.ngx-table .ngx-sort-arrow .ngx-arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    transition: border-bottom 0.2s ease-in-out;
+    border-bottom: 7px solid #BFBFBF;
+}
+
+.ngx-table .ngx-sort-arrow .ngx-arrow-up.active {
+    border-bottom: 7px solid #1890FF;
+}
+
+.ngx-table .ngx-sort-arrow .ngx-arrow-down {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    transition: border-top 0.2s ease-in-out;
+    border-top: 7px solid #BFBFBF;
+}
+
+.ngx-table .ngx-sort-arrow .ngx-arrow-down.active {
+    border-top: 7px solid #1890FF;
+}
+
+.ngx-table .ngx-th-resize {
+    height: 100%;
+    width: 5px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: col-resize;
+    border-right: 1px solid #dddddd;
+}
+
+.ngx-table-bordered .ngx-th-resize {
+    border-right: 1px solid transparent;
 }

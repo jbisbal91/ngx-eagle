@@ -1,4 +1,5 @@
 .ngx-switch {
+  display: inline-flex;
   margin: 0;
   padding: 0;
   color: #000000d9;
@@ -8,11 +9,7 @@
   list-style: none;
   font-feature-settings: "tnum";
   position: relative;
-  display: inline-block;
   box-sizing: border-box;
-  min-width: 2.75rem;
-  height: 1.375rem;
-  line-height: 1.375rem;
   vertical-align: middle;
   background-image: linear-gradient(to right,
       rgba(0, 0, 0, 0.25),
@@ -26,12 +23,15 @@
   user-select: none;
 }
 
+.ngx-switch:disabled {
+  opacity: 0.65;
+  cursor: no-drop;
+}
+
 .ngx-switch .ngx-switch-knob {
   position: absolute;
   top: 2px;
   left: 2px;
-  width: 18px;
-  height: 18px;
   transition: all 0.2s ease-in-out;
 }
 
@@ -39,7 +39,7 @@
   position: absolute;
   inset: 0;
   background-color: #fff;
-  border-radius: 9px;
+  border-radius: 999px;
   box-shadow: 0 2px 4px #00230b33;
   transition: all 0.2s ease-in-out;
   content: "";
@@ -49,14 +49,59 @@
   background: #1890ff;
 }
 
-.ngx-switch.ngx-switch-checked .ngx-switch-knob {
-  left: calc(100% - 20px) !important;
-}
-
 .ngx-switch .ngx-switch-inner {
   display: block;
   margin: 0 7px 0 25px;
   color: #fff;
   font-size: 12px;
   transition: margin 0.2s;
+}
+
+
+//---------LARGE-----------
+.ngx-switch.ngx-switch-lg {
+  width: 56px;
+  height: 28px;
+  line-height: 28px;
+}
+
+.ngx-switch.ngx-switch-lg>.ngx-switch-knob {
+  width: 24px;
+  height: 24px;
+}
+
+.ngx-switch.ngx-switch-lg>.ngx-switch-checked .ngx-switch-knob {
+  left: calc(100% - 26px) !important;
+}
+
+//---------DEFAULT-----------
+.ngx-switch.ngx-switch-df {
+  width: 44px;
+  height: 22px;
+  line-height: 22px;
+}
+
+.ngx-switch.ngx-switch-df>.ngx-switch-knob {
+  width: 18px;
+  height: 18px;
+}
+
+.ngx-switch.ngx-switch-df>.ngx-switch-checked .ngx-switch-knob {
+  left: calc(100% - 20px) !important;
+}
+
+//---------SMALL-----------
+.ngx-switch.ngx-switch-sm {
+  width: 32px;
+  height: 16px;
+  line-height: 16px;
+}
+
+.ngx-switch.ngx-switch-sm>.ngx-switch-knob {
+  width: 12px;
+  height: 12px;
+}
+
+.ngx-switch.ngx-switch-sm>.ngx-switch-checked .ngx-switch-knob {
+  left: calc(100% - 14px) !important;
 }

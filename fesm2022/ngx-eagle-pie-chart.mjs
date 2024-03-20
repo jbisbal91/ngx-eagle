@@ -6,11 +6,11 @@ class PieChartComponent {
     constructor(cdr) {
         this.cdr = cdr;
         this.context = null;
-        this.width = 300;
         this.height = 300;
-        this.value = [];
-        this.ngxPosition = 'right';
+        this.width = 300;
         this.ngxGutter = 0;
+        this.ngxPosition = 'right';
+        this.value = [];
         this.partChartIndex = new EventEmitter();
     }
     ngOnInit() {
@@ -186,7 +186,7 @@ class PieChartComponent {
         return false; // The area is empty or transparent
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: PieChartComponent, deps: [{ token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "16.1.0", version: "16.2.12", type: PieChartComponent, isStandalone: true, selector: "ngx-pie-chart", inputs: { width: "width", height: "height", value: "value", ngxPosition: "ngxPosition", ngxGutter: ["ngxGutter", "ngxGutter", numberAttribute] }, outputs: { partChartIndex: "partChartIndex" }, host: { properties: { "class.ngx-pie-chart-position-right": "ngxPosition === 'right'", "class.ngx-pie-chart-position-bottom": "ngxPosition === 'bottom'" }, classAttribute: "ngx-pie-chart" }, viewQueries: [{ propertyName: "canvas", first: true, predicate: ["pieChartCanvas"], descendants: true, static: true }], ngImport: i0, template: `
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "16.1.0", version: "16.2.12", type: PieChartComponent, isStandalone: true, selector: "ngx-pie-chart", inputs: { height: "height", width: "width", ngxGutter: ["ngxGutter", "ngxGutter", numberAttribute], ngxPosition: "ngxPosition", value: "value" }, outputs: { partChartIndex: "partChartIndex" }, host: { properties: { "class.ngx-pie-chart-position-right": "ngxPosition === 'right'", "class.ngx-pie-chart-position-bottom": "ngxPosition === 'bottom'" }, classAttribute: "ngx-pie-chart" }, viewQueries: [{ propertyName: "canvas", first: true, predicate: ["pieChartCanvas"], descendants: true, static: true }], ngImport: i0, template: `
     <canvas #pieChartCanvas [width]="width" [height]="height"></canvas>
     <div>
       <div
@@ -237,17 +237,17 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
         }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }]; }, propDecorators: { canvas: [{
                 type: ViewChild,
                 args: ['pieChartCanvas', { static: true }]
-            }], width: [{
-                type: Input
             }], height: [{
                 type: Input
-            }], value: [{
-                type: Input
-            }], ngxPosition: [{
+            }], width: [{
                 type: Input
             }], ngxGutter: [{
                 type: Input,
                 args: [{ transform: numberAttribute }]
+            }], ngxPosition: [{
+                type: Input
+            }], value: [{
+                type: Input
             }], partChartIndex: [{
                 type: Output
             }] } });

@@ -1,30 +1,63 @@
 .ngx-divider {
   display: flex;
-  color: #6b727c;
-  font-weight: 500;
-  font-size: 16px;
-  white-space: nowrap;
   text-align: center;
-  border-top: 0;
   border-top-color: #6b727c;
   align-items: center;
-
-  &:before,
-  &:after {
-    position: relative;
-    top: 50%;
-    width: 50%;
-    border-top: 1px solid transparent;
-    border-top-color: transparent;
-    border-top-color: inherit;
-    border-bottom: 0;
-    content: "";
-  }
 }
 
-.ngx-divider span {
+.ngx-divider:before,
+.ngx-divider:after {
+  position: relative;
+  top: 50%;
+  border-top: 1px solid transparent;
+  border-top-color: inherit;
+  border-bottom: 0;
+  content: "";
+}
+
+.ngx-divider.ngx-divider-dashed:after,
+.ngx-divider.ngx-divider-dashed:before {
+  border: 1px dashed;
+  border-bottom: 0;
+}
+
+.ngx-divider.ngx-divider-orientation-left:before {
+  width: 2rem;
+}
+
+.ngx-divider.ngx-divider-orientation-left:after {
+  width: 100%;
+}
+
+.ngx-divider.ngx-divider-orientation-center:before,
+.ngx-divider.ngx-divider-orientation-center:after {
+  width: 50%;
+}
+
+.ngx-divider.ngx-divider-orientation-right:before {
+  width: 100%;
+}
+
+.ngx-divider.ngx-divider-orientation-right:after {
+  width: 2rem;
+}
+
+.ngx-divider>span {
   font-size: 1rem;
   line-height: 1.5rem;
+  font-weight: 500;
+  white-space: nowrap;
   padding-left: 0.625rem;
   padding-right: 0.625rem;
+}
+
+.ngx-divider.ngx-divider-vertical {
+  position: relative;
+  height: 1rem;
+  margin: 0 8px;
+  display: inline-block;
+  vertical-align: middle;
+  border-top: 0;
+  border-left: 1px solid;
+  border-radius: unset;
 }

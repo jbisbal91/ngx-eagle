@@ -16,7 +16,7 @@ class RowDirective {
         this.cdr.markForCheck();
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: RowDirective, deps: [{ token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Directive }); }
-    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "16.1.0", version: "16.2.12", type: RowDirective, selector: "[ngx-row]", inputs: { ngxSpan: ["ngxSpan", "ngxSpan", numberAttribute], ngxGutter: "ngxGutter", ngxAlign: "ngxAlign", ngxJustify: "ngxJustify" }, host: { properties: { "class.ngx-row-top": "ngxAlign === 'top'", "class.ngx-row-middle": "ngxAlign === 'middle'", "class.ngx-row-bottom": "ngxAlign === 'bottom'", "class.ngx-row-start": "ngxJustify === 'start'", "class.ngx-row-end": "ngxJustify === 'end'", "class.ngx-row-center": "ngxJustify === 'center'", "class.ngx-row-space-around": "ngxJustify === 'space-around'", "class.ngx-row-space-between": "ngxJustify === 'space-between'", "class.ngx-row-space-evenly": "ngxJustify === 'space-evenly'" }, classAttribute: "ngx-row" }, ngImport: i0 }); }
+    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "16.1.0", version: "16.2.12", type: RowDirective, selector: "[ngx-row]", inputs: { ngxAlign: "ngxAlign", ngxGutter: "ngxGutter", ngxJustify: "ngxJustify", ngxSpan: ["ngxSpan", "ngxSpan", numberAttribute] }, host: { properties: { "class.ngx-row-top": "ngxAlign === 'top'", "class.ngx-row-middle": "ngxAlign === 'middle'", "class.ngx-row-bottom": "ngxAlign === 'bottom'", "class.ngx-row-start": "ngxJustify === 'start'", "class.ngx-row-end": "ngxJustify === 'end'", "class.ngx-row-center": "ngxJustify === 'center'", "class.ngx-row-space-around": "ngxJustify === 'space-around'", "class.ngx-row-space-between": "ngxJustify === 'space-between'", "class.ngx-row-space-evenly": "ngxJustify === 'space-evenly'" }, classAttribute: "ngx-row" }, ngImport: i0 }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: RowDirective, decorators: [{
             type: Directive,
@@ -35,15 +35,15 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                         '[class.ngx-row-space-evenly]': `ngxJustify === 'space-evenly'`,
                     },
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }]; }, propDecorators: { ngxSpan: [{
-                type: Input,
-                args: [{ transform: numberAttribute }]
-            }], ngxGutter: [{
+        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }]; }, propDecorators: { ngxAlign: [{
                 type: Input
-            }], ngxAlign: [{
+            }], ngxGutter: [{
                 type: Input
             }], ngxJustify: [{
                 type: Input
+            }], ngxSpan: [{
+                type: Input,
+                args: [{ transform: numberAttribute }]
             }] } });
 
 class ColDirective {
@@ -71,10 +71,15 @@ class ColDirective {
         this.subscription.unsubscribe();
     }
     setMaxWidthCols(totalCols) {
-        const maxWidth = (Number(this.ngxSpan) / totalCols) * 100;
-        this.renderer2.setStyle(this.elementRef.nativeElement, 'display', 'block');
-        this.renderer2.setStyle(this.elementRef.nativeElement, 'max-width', `${maxWidth}%`);
-        this.renderer2.setStyle(this.elementRef.nativeElement, 'flex', `0 0 ${maxWidth}%`);
+        if (this.ngxSpan === 0) {
+            this.renderer2.setStyle(this.elementRef.nativeElement, 'display', 'none');
+        }
+        else {
+            const maxWidth = (Number(this.ngxSpan) / totalCols) * 100;
+            this.renderer2.setStyle(this.elementRef.nativeElement, 'display', 'block');
+            this.renderer2.setStyle(this.elementRef.nativeElement, 'max-width', `${maxWidth}%`);
+            this.renderer2.setStyle(this.elementRef.nativeElement, 'flex', `0 0 ${maxWidth}%`);
+        }
     }
     setGutter(gutter) {
         this.renderer2.setStyle(this.elementRef.nativeElement, 'margin', `${gutter}`);

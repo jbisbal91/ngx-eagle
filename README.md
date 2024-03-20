@@ -22,7 +22,7 @@ An enterprise-class Angular UI component library
 
 ## ☀️ License
 
-[MIT](https://github.com/jbisbal91/ngx-ui/blob/main/LICENSE)
+[MIT](https://github.com/jbisbal91/ngx-eagle/blob/main/LICENSE)
 
 ## 🎉 Users
 

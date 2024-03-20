@@ -5,15 +5,15 @@ export type NgxJustify = 'start' | 'end' | 'center' | 'space-around' | 'space-be
 export type NgxAlign = 'top' | 'middle' | 'bottom';
 export declare class RowDirective implements AfterContentInit {
     private cdr;
-    ngxSpan: number;
-    ngxGutter: string;
     ngxAlign: NgxAlign;
+    ngxGutter: string;
     ngxJustify: NgxJustify;
+    ngxSpan: number;
     readonly currentSpan$: ReplaySubject<number>;
     readonly currentGutter$: ReplaySubject<string>;
     constructor(cdr: ChangeDetectorRef);
     ngAfterContentInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<RowDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<RowDirective, "[ngx-row]", never, { "ngxSpan": { "alias": "ngxSpan"; "required": false; }; "ngxGutter": { "alias": "ngxGutter"; "required": false; }; "ngxAlign": { "alias": "ngxAlign"; "required": false; }; "ngxJustify": { "alias": "ngxJustify"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<RowDirective, "[ngx-row]", never, { "ngxAlign": { "alias": "ngxAlign"; "required": false; }; "ngxGutter": { "alias": "ngxGutter"; "required": false; }; "ngxJustify": { "alias": "ngxJustify"; "required": false; }; "ngxSpan": { "alias": "ngxSpan"; "required": false; }; }, {}, never, never, false, never>;
     static ngAcceptInputType_ngxSpan: unknown;
 }

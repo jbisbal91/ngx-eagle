@@ -19,23 +19,22 @@
   transition: color 0.2s ease-in-out;
 }
 
-button:disabled {
+.ngx-button:disabled {
   opacity: 0.7;
-  cursor: default;
+  cursor: no-drop;
 }
 
 .ngx-button.ngx-button-sm {
-  font-size: 0.875rem;
-  line-height: 1.4285714286;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  font-size: 0.75rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   height: 1.5rem;
 }
 
 .ngx-button.ngx-button-md {
   font-size: 0.875rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
   height: 2rem;
 }
 
@@ -63,26 +62,6 @@ button:disabled {
   border-radius: 9999px;
 }
 
-.ngx-button.ngx-button-filled {
-  border: none;
-  background-color: var(--ngx-comp-button-filled-bg-color);
-  color: var(--ngx-comp-button-filled-color);
-}
-
-.ngx-button.ngx-button-outlined {
-  border-color: var(--ngx-comp-button-outlined-border-color);
-  color: var(--ngx-comp-button-outlined-color);
-}
-
-.ngx-button.ngx-button-text {
-  border: none;
-  background-color: transparent;
-  color: var(--ngx-comp-button-text-color);
-}
-
 .ngx-button.ngx-button-elevated {
-  border: none;
-  background-color: var(--ngx-comp-button-elevated-bg-color);
-  color: var(--ngx-comp-button-elevated-color);
   box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
 }

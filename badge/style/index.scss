@@ -1,75 +1,67 @@
 .ngx-badge {
+  z-index: auto;
   position: relative;
 }
 
-.ngx-badge-content {
+.ngx-badge>.ngx-badge-content {
   position: absolute;
-  text-align: center;
-  display: inline-block;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   transition: transform 0.2s ease-in-out;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   pointer-events: none;
-  background-color: var(--ngx-theme-badge-background-color);
-  color: var(--ngx-theme-badge-color);
   font-family: Roboto, sans-serif;
-  font-weight: 600;
+  font-weight: 400;
 }
 
-.ngx-badge-small {
-  height: 1.2rem;
-  min-width: 1.2rem;
-  font-size: 0.875rem;
-  padding-top: 0.075rem;
-  padding-bottom: 0.075rem;
-  margin-top: -0.5rem;
-  padding-left: 0.3rem;
-  padding-right: 0.3rem;
+.ngx-badge>.ngx-badge-small {
+  height: 20px;
+  min-width: 20px;
   border-radius: 10px;
+  font-size: 12px;
+  padding: 0 6px;
+  bottom: calc(100% - 10px);
+  left: calc(100% - 10px);
 }
 
-.ngx-badge-medium {
-  height: 1.65rem;
-  min-width: 1.65rem;
-  font-size: 1rem;
-  padding-top: 0.3rem;
-  padding-bottom: 0.3rem;
-  margin-top: -0.875rem;
-  padding-left: 0.3rem;
-  padding-right: 0.3rem;
-  border-radius: 20px;
+.ngx-badge>.ngx-badge-medium {
+  height: 24px;
+  min-width: 24px;
+  border-radius: 12px;
+  font-size: 14px;
+  padding: 0 8px;
+  bottom: calc(100% - 12px);
+  left: calc(100% - 12px);
 }
 
-.ngx-badge-large {
-  height: 2.45rem;
-  min-width: 2.45rem;
-  font-size: 1.125rem;
-  padding-top: 0.65rem;
-  padding-bottom: 0.65rem;
-  margin-top: -1.5rem;
-  padding-left: 0.3rem;
-  padding-right: 0.3rem;
-  border-radius: 30px;
+.ngx-badge>.ngx-badge-large {
+  height: 28px;
+  min-width: 28px;
+  border-radius: 14px;
+  font-size: 16px;
+  padding: 0 10px;
+  bottom: calc(100% - 14px);
+  left: calc(100% - 14px);
 }
 
-.ngx-badge-small.ngx-badge-before {
-  left: -1rem;
+.ngx-badge>.ngx-badge-small.ngx-badge-before {
+  right: calc(100% - 10px);
+  left: auto;
 }
 
-.ngx-badge-medium.ngx-badge-before {
-  left: -1.5rem;
+.ngx-badge>.ngx-badge-medium.ngx-badge-before {
+  right: calc(100% - 12px);
+  left: auto;
 }
 
-.ngx-badge-large.ngx-badge-before {
-  left: -2.25rem;
+.ngx-badge>.ngx-badge-large.ngx-badge-before {
+  right: calc(100% - 14px);
+  left: auto;
 }
 
-.ngx-badge-btn {
-  margin-left: 0.25rem;
-  margin-top: -1rem;
-}
-
-.ngx-badge-hidden {
+.ngx-badge>.ngx-badge-hidden {
   display: none;
 }

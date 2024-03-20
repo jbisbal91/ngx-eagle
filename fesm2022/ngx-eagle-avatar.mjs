@@ -7,14 +7,13 @@ class AvatarComponent {
         this.elementRef = elementRef;
         this.renderer2 = renderer2;
         this.cdr = cdr;
-        this.ngxIcon = null;
         this.ngxShape = 'circle';
         this.ngxSize = 'default';
         this.ngxSrc = null;
         this.ngxText = null;
     }
-    ngOnInit() {
-        if (typeof this.ngxSize) {
+    ngAfterViewInit() {
+        if (typeof this.ngxSize === 'number') {
             this.setSizeInNumber();
         }
         this.cdr.markForCheck();
@@ -27,12 +26,10 @@ class AvatarComponent {
         this.setFontSizeImgUser();
     }
     setFontSizeImgUser() {
-        setTimeout(() => {
-            if (this.avatarUserRef) {
-                this.avatarUserRef.nativeElement.style.fontSize =
-                    (Number(this.ngxSize) * 0.5) / 16 + 'rem';
-            }
-        });
+        if (this.avatarUserRef) {
+            const fontSize = `${(Number(this.ngxSize) * 0.5) / 16}rem`;
+            this.renderer2.setStyle(this.avatarUserRef.nativeElement, 'font-size', fontSize);
+        }
     }
     getInitials(text) {
         const words = text.split(' ');
@@ -74,12 +71,9 @@ class AvatarComponent {
         return color;
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: AvatarComponent, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: AvatarComponent, isStandalone: true, selector: "ngx-avatar", inputs: { ngxIcon: "ngxIcon", ngxShape: "ngxShape", ngxSize: "ngxSize", ngxSrc: "ngxSrc", ngxText: "ngxText" }, host: { properties: { "class.ngx-avatar-circle": "ngxShape === 'circle'", "class.ngx-avatar-square": "ngxShape === 'square'", "class.ngx-avatar-sm": "ngxSize === 'small'", "class.ngx-avatar-df": "ngxSize === 'default'", "class.ngx-avatar-lg": "ngxSize === 'large'" }, classAttribute: "ngx-avatar" }, viewQueries: [{ propertyName: "avatarUserRef", first: true, predicate: ["ngx_avatar_user"], descendants: true }], ngImport: i0, template: ` <img
-      class="ngx-avatar-img"
-      *ngIf="ngxSrc"
-      [src]="ngxSrc"
-      alt="ngx-avatar"
-    />
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: AvatarComponent, isStandalone: true, selector: "ngx-avatar", inputs: { ngxShape: "ngxShape", ngxSize: "ngxSize", ngxSrc: "ngxSrc", ngxText: "ngxText" }, host: { properties: { "class.ngx-avatar-circle": "ngxShape === 'circle'", "class.ngx-avatar-square": "ngxShape === 'square'", "class.ngx-avatar-sm": "ngxSize === 'small'", "class.ngx-avatar-df": "ngxSize === 'default'", "class.ngx-avatar-lg": "ngxSize === 'large'" }, classAttribute: "ngx-avatar" }, viewQueries: [{ propertyName: "avatarUserRef", first: true, predicate: ["ngx_avatar_user"], descendants: true }], ngImport: i0, template: ` <div class="ngx-avatar-img">
+      <img *ngIf="ngxSrc" [src]="ngxSrc" alt="ngx-avatar" />
+    </div>
     <span *ngIf="ngxText && !ngxSrc">{{ getInitials(ngxText) }}</span>
 
     <span #ngx_avatar_user *ngIf="!ngxSrc && !ngxText" class="ngx-avatar-user"
@@ -102,12 +96,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
             type: Component,
             args: [{
                     selector: 'ngx-avatar',
-                    template: ` <img
-      class="ngx-avatar-img"
-      *ngIf="ngxSrc"
-      [src]="ngxSrc"
-      alt="ngx-avatar"
-    />
+                    template: ` <div class="ngx-avatar-img">
+      <img *ngIf="ngxSrc" [src]="ngxSrc" alt="ngx-avatar" />
+    </div>
     <span *ngIf="ngxText && !ngxSrc">{{ getInitials(ngxText) }}</span>
 
     <span #ngx_avatar_user *ngIf="!ngxSrc && !ngxText" class="ngx-avatar-user"
@@ -137,9 +128,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     standalone: true,
                     imports: [NgIf],
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }, { type: i0.ChangeDetectorRef }]; }, propDecorators: { ngxIcon: [{
-                type: Input
-            }], ngxShape: [{
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }, { type: i0.ChangeDetectorRef }]; }, propDecorators: { ngxShape: [{
                 type: Input
             }], ngxSize: [{
                 type: Input

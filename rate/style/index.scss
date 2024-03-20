@@ -1,0 +1,10 @@
+.ngx-rate {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  max-width: fit-content;
+}
+
+ngx-rate:disabled {
+  cursor: default;
+}

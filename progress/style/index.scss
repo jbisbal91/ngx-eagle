@@ -1,0 +1,65 @@
+.ngx-progress {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+//---------------LINE----------------------
+.ngx-progress>.ngx-progress-outer {
+    display: flex;
+    width: 100%;
+    background-color: var(--ngx-comp-progress-background-color);
+    border-radius: 100px;
+    display: inline-block;
+}
+
+.ngx-progress>.ngx-progress-outer.ngx-progress-sm {
+    height: 0.375rem;
+}
+
+.ngx-progress>.ngx-progress-outer.ngx-progress-df {
+    height: 0.5rem;
+}
+
+.ngx-progress>.ngx-progress-outer.ngx-progress-lg {
+    height: 0.625rem;
+}
+
+.ngx-progress>.ngx-progress-outer>.ngx-progress-inner {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    vertical-align: middle;
+    border-radius: 100px;
+    width: 0%;
+}
+
+//---------------CIRCLE----------------------
+.ngx-progress>.progress-circle {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.ngx-progress>.progress-circle circle {
+    fill: none;
+    stroke-width: 5;
+}
+
+.ngx-progress>.progress-circle .bg-circle {
+    stroke: var(--ngx-comp-progress-background-color);
+}
+
+.ngx-progress>.progress-circle>.progress-text,
+.ngx-progress>.progress-circle>.template-c {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ngx-progress>.progress-circle>.progress-text {
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}

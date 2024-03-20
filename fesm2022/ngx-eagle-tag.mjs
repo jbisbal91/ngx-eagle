@@ -1,21 +1,69 @@
 import * as i0 from '@angular/core';
-import { EventEmitter, Component, Input, Output, NgModule } from '@angular/core';
-import { NgStyle, NgIf } from '@angular/common';
+import { EventEmitter, booleanAttribute, Component, Input, Output, NgModule } from '@angular/core';
+import { NgIf, NgStyle } from '@angular/common';
+import * as i1 from 'ngx-eagle/core/services';
 
 class TagComponent {
-    constructor(renderer, elementRef) {
+    constructor(renderer, elementRef, colorConverter) {
         this.renderer = renderer;
         this.elementRef = elementRef;
-        this.ngxMode = 'default';
+        this.colorConverter = colorConverter;
+        this.ngxBordered = true;
         this.ngxChecked = false;
+        this.ngxMode = 'default';
         this.ngxOnClose = new EventEmitter();
         this.ngxCheckedChange = new EventEmitter();
+        this.backgroundColor = '#1890FF';
+        this.color = '#ffffff';
+    }
+    ngOnInit() {
+        this.setTagColor();
+    }
+    ngOnChanges(changes) {
+        if (changes.hasOwnProperty('ngxColor')) {
+            const newColor = changes['ngxColor'].currentValue;
+            if (typeof newColor === 'string') {
+                const { backgroundColor, overlayColor } = this.colorConverter.contrastingColors(newColor);
+                this.backgroundColor = backgroundColor;
+                this.color = overlayColor;
+                this.setTagColor();
+            }
+            if (typeof newColor === 'object') {
+                this.backgroundColor = newColor.backgroundColor;
+                this.color = newColor.overlayColor;
+                this.setTagColor();
+            }
+        }
     }
     updateCheckedStatus() {
         if (this.ngxMode === 'checkable') {
             this.ngxChecked = !this.ngxChecked;
+            this.setTagColor();
             this.ngxCheckedChange.emit(this.ngxChecked);
         }
+    }
+    setTagColor() {
+        let bgColor = '';
+        let color = '';
+        let borderColor = '';
+        switch (this.ngxMode) {
+            case 'default':
+                bgColor = this.backgroundColor;
+                color = this.color;
+                break;
+            case 'checkable':
+                bgColor = this.ngxChecked ? this.backgroundColor : 'transparent';
+                color = this.ngxChecked ? this.color : 'currentColor';
+                break;
+            case 'closeable':
+                bgColor = this.backgroundColor;
+                color = this.color;
+                break;
+        }
+        borderColor = this.color === '#ffffff' ? 'currentColor' : this.color;
+        this.renderer.setStyle(this.elementRef.nativeElement, 'background-color', bgColor);
+        this.renderer.setStyle(this.elementRef.nativeElement, 'color', color);
+        this.renderer.setStyle(this.elementRef.nativeElement, 'border-color', this.ngxBordered ? borderColor : 'transparent');
     }
     closeTag(e) {
         this.ngxOnClose.emit(e);
@@ -23,33 +71,10 @@ class TagComponent {
             this.renderer.removeChild(this.renderer.parentNode(this.elementRef.nativeElement), this.elementRef.nativeElement);
         }
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: TagComponent, deps: [{ token: i0.Renderer2 }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: TagComponent, isStandalone: true, selector: "ngx-tag", inputs: { ngxMode: "ngxMode", ngxColor: "ngxColor", ngxChecked: "ngxChecked" }, outputs: { ngxOnClose: "ngxOnClose", ngxCheckedChange: "ngxCheckedChange" }, host: { listeners: { "click": "updateCheckedStatus()" }, properties: { "style.background-color": "ngxColor", "class.ngx-tag-has-color": "ngxColor? true : false", "class.ngx-tag-default": "ngxMode === 'default'", "class.ngx-tag-checkable": "ngxMode === 'checkable'", "class.ngx-tag-sync": "ngxMode === 'sync'", "class.ngx-tag-checkable-checked": "ngxChecked" }, classAttribute: "ngx-tag" }, ngImport: i0, template: `
-    <svg
-      *ngIf="ngxMode === 'sync'"
-      style="
-    filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(113deg)
-      brightness(110%) contrast(109%);
-  "
-      class="ngx-tag-icon-sync"
-      xmlns="http://www.w3.org/2000/svg"
-      height="16"
-      viewBox="0 -960 960 960"
-      width="24"
-    >
-      <path
-        d="M160-160v-80h110l-16-14q-52-46-73-105t-21-119q0-111 66.5-197.5T400-790v84q-72 26-116 88.5T240-478q0 45 17 87.5t53 78.5l10 10v-98h80v240H160Zm400-10v-84q72-26 116-88.5T720-482q0-45-17-87.5T650-648l-10-10v98h-80v-240h240v80H690l16 14q49 49 71.5 106.5T800-482q0 111-66.5 197.5T560-170Z"
-      />
-    </svg>
-
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: TagComponent, deps: [{ token: i0.Renderer2 }, { token: i0.ElementRef }, { token: i1.ColorConverter }], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "16.1.0", version: "16.2.12", type: TagComponent, isStandalone: true, selector: "ngx-tag", inputs: { ngxBordered: ["ngxBordered", "ngxBordered", booleanAttribute], ngxColor: "ngxColor", ngxChecked: ["ngxChecked", "ngxChecked", booleanAttribute], ngxMode: "ngxMode" }, outputs: { ngxOnClose: "ngxOnClose", ngxCheckedChange: "ngxCheckedChange" }, host: { listeners: { "click": "updateCheckedStatus()" }, properties: { "class.ngx-tag-checkable": "ngxMode === 'checkable'" }, classAttribute: "ngx-tag" }, usesOnChanges: true, ngImport: i0, template: `
     <ng-content></ng-content>
-
     <svg
-      [ngStyle]="{
-        filter: ngxColor
-          ? 'invert(100%) sepia(0%) saturate(7500%) hue-rotate(113deg) brightness(110%) contrast(109%)'
-          : ''
-      }"
       class="ngx-tag-close"
       *ngIf="ngxMode === 'closeable'"
       (click)="closeTag($event)"
@@ -57,43 +82,21 @@ class TagComponent {
       height="14"
       viewBox="0 -960 960 960"
       width="14"
+      fill="currentColor"
     >
       <path
         d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
       />
     </svg>
-  `, isInline: true, dependencies: [{ kind: "directive", type: NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }, { kind: "directive", type: NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] }); }
+  `, isInline: true, dependencies: [{ kind: "directive", type: NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }] }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: TagComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'ngx-tag',
                     template: `
-    <svg
-      *ngIf="ngxMode === 'sync'"
-      style="
-    filter: invert(100%) sepia(0%) saturate(7500%) hue-rotate(113deg)
-      brightness(110%) contrast(109%);
-  "
-      class="ngx-tag-icon-sync"
-      xmlns="http://www.w3.org/2000/svg"
-      height="16"
-      viewBox="0 -960 960 960"
-      width="24"
-    >
-      <path
-        d="M160-160v-80h110l-16-14q-52-46-73-105t-21-119q0-111 66.5-197.5T400-790v84q-72 26-116 88.5T240-478q0 45 17 87.5t53 78.5l10 10v-98h80v240H160Zm400-10v-84q72-26 116-88.5T720-482q0-45-17-87.5T650-648l-10-10v98h-80v-240h240v80H690l16 14q49 49 71.5 106.5T800-482q0 111-66.5 197.5T560-170Z"
-      />
-    </svg>
-
     <ng-content></ng-content>
-
     <svg
-      [ngStyle]="{
-        filter: ngxColor
-          ? 'invert(100%) sepia(0%) saturate(7500%) hue-rotate(113deg) brightness(110%) contrast(109%)'
-          : ''
-      }"
       class="ngx-tag-close"
       *ngIf="ngxMode === 'closeable'"
       (click)="closeTag($event)"
@@ -101,6 +104,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
       height="14"
       viewBox="0 -960 960 960"
       width="14"
+      fill="currentColor"
     >
       <path
         d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"
@@ -109,22 +113,21 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
   `,
                     host: {
                         class: 'ngx-tag',
-                        '[style.background-color]': 'ngxColor',
-                        '[class.ngx-tag-has-color]': 'ngxColor? true : false',
-                        '[class.ngx-tag-default]': `ngxMode === 'default'`,
                         '[class.ngx-tag-checkable]': `ngxMode === 'checkable'`,
-                        '[class.ngx-tag-sync]': `ngxMode === 'sync'`,
-                        '[class.ngx-tag-checkable-checked]': `ngxChecked`,
                         '(click)': 'updateCheckedStatus()',
                     },
                     standalone: true,
                     imports: [NgStyle, NgIf],
                 }]
-        }], ctorParameters: function () { return [{ type: i0.Renderer2 }, { type: i0.ElementRef }]; }, propDecorators: { ngxMode: [{
-                type: Input
+        }], ctorParameters: function () { return [{ type: i0.Renderer2 }, { type: i0.ElementRef }, { type: i1.ColorConverter }]; }, propDecorators: { ngxBordered: [{
+                type: Input,
+                args: [{ transform: booleanAttribute }]
             }], ngxColor: [{
                 type: Input
             }], ngxChecked: [{
+                type: Input,
+                args: [{ transform: booleanAttribute }]
+            }], ngxMode: [{
                 type: Input
             }], ngxOnClose: [{
                 type: Output

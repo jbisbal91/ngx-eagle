@@ -1,16 +1,31 @@
-import { ElementRef, OnChanges, OnInit, Renderer2, SimpleChanges } from '@angular/core';
+import { AfterViewInit, ElementRef, OnChanges, Renderer2, SimpleChanges } from '@angular/core';
+import { ColorContrast } from 'ngx-eagle/core/types';
+import { NgxPosition, NgxSize } from './typings';
+import { ColorConverter } from 'ngx-eagle/core/services';
 import * as i0 from "@angular/core";
-export declare class BadgeDirective implements OnInit, OnChanges {
+export declare class BadgeDirective implements AfterViewInit, OnChanges {
     elementRef: ElementRef;
     private renderer2;
-    ngxBadge: any;
-    ngxBadgePosition: 'before' | 'after';
-    ngxBadgeSize: 'small' | 'medium' | 'large';
+    private colorConverter;
+    ngxBadge: number;
+    ngxBadgeColor: ColorContrast | string;
     ngxBadgeHidden: boolean;
+    ngxBadgePosition: NgxPosition;
+    ngxBadgeSize: NgxSize;
+    ngxOverflowCount: number;
     newSpan: HTMLSpanElement;
-    constructor(elementRef: ElementRef, renderer2: Renderer2);
+    constructor(elementRef: ElementRef, renderer2: Renderer2, colorConverter: ColorConverter);
     ngOnChanges(changes: SimpleChanges): void;
-    ngOnInit(): void;
+    ngAfterViewInit(): void;
+    buildBadge(): void;
+    setPosition(): void;
+    setMaxWidth(): void;
+    setSize(): void;
+    setTextContent(): void;
+    setColor(color: ColorContrast | string): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<BadgeDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<BadgeDirective, "[ngxBadge]", never, { "ngxBadge": { "alias": "ngxBadge"; "required": false; }; "ngxBadgePosition": { "alias": "ngxBadgePosition"; "required": false; }; "ngxBadgeSize": { "alias": "ngxBadgeSize"; "required": false; }; "ngxBadgeHidden": { "alias": "ngxBadgeHidden"; "required": false; }; }, {}, never, never, true, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<BadgeDirective, "[ngxBadge]", never, { "ngxBadge": { "alias": "ngxBadge"; "required": false; }; "ngxBadgeColor": { "alias": "ngxBadgeColor"; "required": false; }; "ngxBadgeHidden": { "alias": "ngxBadgeHidden"; "required": false; }; "ngxBadgePosition": { "alias": "ngxBadgePosition"; "required": false; }; "ngxBadgeSize": { "alias": "ngxBadgeSize"; "required": false; }; "ngxOverflowCount": { "alias": "ngxOverflowCount"; "required": false; }; }, {}, never, never, true, never>;
+    static ngAcceptInputType_ngxBadge: unknown;
+    static ngAcceptInputType_ngxBadgeHidden: unknown;
+    static ngAcceptInputType_ngxOverflowCount: unknown;
 }

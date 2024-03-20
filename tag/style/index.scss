@@ -16,6 +16,11 @@
   opacity: 1;
   transition: all 0.3s;
   white-space: nowrap;
+  border-color: transparent;
+  border: 1px solid transparent;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .ngx-tag .ngx-tag-close {
@@ -24,40 +29,6 @@
   transition: all 0.3s;
 }
 
-.ngx-tag .ngx-tag-icon-sync {
-  animation: loadingCircle 1s infinite linear;
-}
-
-@keyframes loadingCircle {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.ngx-tag .ngx-tag-has-color {
-  border-color: transparent;
-}
-
-.ngx-tag-has-color,
-.ngx-tag-has-color a,
-.ngx-tag-has-color a:hover,
-.ngx-tag-has-color .ngx-tag-has-color {
-  color: #fff;
-}
-
-.ngx-tag-sync,
-.ngx-tag-checkable {
+.ngx-tag.ngx-tag-checkable {
   cursor: pointer;
-  border-color: transparent;
-  color: #1890ff;
-}
-
-.ngx-tag-default {
-  border: 1px solid currentColor;
-}
-
-.ngx-tag-checkable:active,
-.ngx-tag-checkable-checked {
-  color: #fff;
-  background-color: #1890ff !important;
 }

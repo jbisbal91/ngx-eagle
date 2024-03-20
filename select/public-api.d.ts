@@ -1,3 +1,3 @@
 export * from './select.module';
-export * from './select.component';
-export * from './option.component';
+export * from './ngx-outlined-select-field/ngx-outlined-select-field.component';
+export * from './ngx-option/ngx-option.component';

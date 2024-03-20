@@ -1,14 +1,17 @@
 import * as i0 from '@angular/core';
-import { forwardRef, Component, ChangeDetectionStrategy, NgModule } from '@angular/core';
+import { forwardRef, Component, ChangeDetectionStrategy, Input, NgModule } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 
 class SwitchComponent {
-    constructor(cdr) {
+    constructor(cdr, elementRef) {
         this.cdr = cdr;
+        this.elementRef = elementRef;
         this.isChecked = false;
         this.onChange = () => { };
         this.onTouched = () => { };
         this.disabled = false;
+        this.ngxSize = 'default';
+        this.disabled = this.elementRef.nativeElement.hasAttribute('disabled');
     }
     ngAfterContentInit() {
         this.cdr.markForCheck();
@@ -28,10 +31,12 @@ class SwitchComponent {
         this.disabled = disabled;
     }
     toggle() {
-        this.writeValue(!this.isChecked);
+        if (!this.disabled) {
+            this.writeValue(!this.isChecked);
+        }
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SwitchComponent, deps: [{ token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: SwitchComponent, isStandalone: true, selector: "ngx-switch", host: { classAttribute: "ngx-switch" }, providers: [
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SwitchComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i0.ElementRef }], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: SwitchComponent, isStandalone: true, selector: "ngx-switch", inputs: { ngxSize: "ngxSize" }, host: { properties: { "class.ngx-switch-sm": "ngxSize === 'small'", "class.ngx-switch-df": "ngxSize === 'default'", "class.ngx-switch-lg": "ngxSize === 'large'" }, classAttribute: "ngx-switch" }, providers: [
             {
                 provide: NG_VALUE_ACCESSOR,
                 useExisting: forwardRef(() => SwitchComponent),
@@ -39,8 +44,11 @@ class SwitchComponent {
             },
         ], ngImport: i0, template: `
     <button
-      [disabled]="disabled"
       class="ngx-switch"
+      [class.ngx-switch-sm]="ngxSize === 'small'"
+      [class.ngx-switch-df]="ngxSize === 'default'"
+      [class.ngx-switch-lg]="ngxSize === 'large'"
+      [disabled]="disabled"
       [class.ngx-switch-checked]="isChecked"
       (click)="toggle()"
     >
@@ -55,8 +63,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     selector: 'ngx-switch',
                     template: `
     <button
-      [disabled]="disabled"
       class="ngx-switch"
+      [class.ngx-switch-sm]="ngxSize === 'small'"
+      [class.ngx-switch-df]="ngxSize === 'default'"
+      [class.ngx-switch-lg]="ngxSize === 'large'"
+      [disabled]="disabled"
       [class.ngx-switch-checked]="isChecked"
       (click)="toggle()"
     >
@@ -74,10 +85,15 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     host: {
                         class: 'ngx-switch',
+                        '[class.ngx-switch-sm]': `ngxSize === 'small'`,
+                        '[class.ngx-switch-df]': `ngxSize === 'default'`,
+                        '[class.ngx-switch-lg]': `ngxSize === 'large'`,
                     },
                     standalone: true,
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }]; } });
+        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }, { type: i0.ElementRef }]; }, propDecorators: { ngxSize: [{
+                type: Input
+            }] } });
 
 class SwitchModule {
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SwitchModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
@@ -91,6 +107,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     imports: [SwitchComponent,],
                 }]
         }] });
+
+const SwitchSize = ['large', 'small', 'default'];
 
 /**
  * Generated bundle index. Do not edit.

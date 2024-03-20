@@ -1,0 +1,31 @@
+import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
+import { ControlValueAccessor } from '@angular/forms';
+import * as i0 from "@angular/core";
+export declare class RateComponent implements OnInit, ControlValueAccessor {
+    private cdr;
+    private elementRef;
+    ngxColor: string;
+    ngxAllowClear: boolean;
+    canvas: ElementRef<HTMLCanvasElement>;
+    context: CanvasRenderingContext2D | null;
+    disabled: boolean;
+    selectedStar: number;
+    stars: boolean[];
+    onChange: any;
+    onTouched: any;
+    constructor(cdr: ChangeDetectorRef, elementRef: ElementRef);
+    ngOnInit(): void;
+    writeValue(value: number): void;
+    registerOnChange(fn: any): void;
+    registerOnTouched(fn: any): void;
+    setDisabledState(disabled: boolean): void;
+    onMouseMove(event: MouseEvent): void;
+    findStarIndex(x: number, y: number): number;
+    onCanvasClick(event: MouseEvent): void;
+    drawStars(): void;
+    drawStar(cx: number, cy: number, spikes: number, outerRadius: number, innerRadius: number, filled: boolean): void;
+    fillStar(index: number): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<RateComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<RateComponent, "ngx-rate", never, { "ngxColor": { "alias": "ngxColor"; "required": false; }; "ngxAllowClear": { "alias": "ngxAllowClear"; "required": false; }; }, {}, never, never, true, never>;
+    static ngAcceptInputType_ngxAllowClear: unknown;
+}

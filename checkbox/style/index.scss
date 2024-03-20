@@ -1,0 +1,57 @@
+.ngx-checkbox {
+    display: flex;
+    align-items: center;
+    max-width: fit-content;
+    gap: 0.5rem;
+}
+
+.ngx-checkbox>input[type="checkbox"] {
+    margin: 0;
+    height: 18px;
+    width: 18px;
+    cursor: pointer;
+    appearance: none;
+    outline: none;
+    border: 1px solid #888;
+    border-radius: 3px;
+}
+
+.ngx-checkbox>input[type="checkbox"]:not(:checked) {
+    background-color: transparent;
+    border: 1px solid #888;
+}
+
+.ngx-checkbox>input[type="checkbox"]:checked {
+    background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgLTk2MCA5NjAgOTYwIiB3aWR0aD0iMjQiPjxwYXRoIGQ9Ik0zODItMjQwIDE1NC00NjhsNTctNTcgMTcxIDE3MSAzNjctMzY3IDU3IDU3LTQyNCA0MjRaIiBmaWxsPSIjZmZmZmZmIi8+PC9zdmc+) no-repeat center;
+    border: none;
+}
+
+.ngx-checkbox>input[type="checkbox"]:indeterminate {
+    background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgLTk2MCA5NjAgOTYwIiB3aWR0aD0iMjQiPjxwYXRoIGQ9Ik0yNDAtNDQwdi04MGg0ODB2ODBIMjQwWiIgZmlsbD0iI2ZmZmZmZiIvPjwvc3ZnPg==) no-repeat center;
+    border: none;
+}
+
+.ngx-checkbox>input[type="checkbox"]:disabled,
+.ngx-checkbox>input[type="checkbox"]:disabled+label {
+    opacity: 0.6;
+    cursor: no-drop;
+}
+
+.ngx-checkbox>label {
+    cursor: pointer;
+}
+
+.ngx-checkbox.ngx-checkbox-sm>input[type="checkbox"] {
+    height: 0.875rem;
+    width: 0.875rem;
+}
+
+.ngx-checkbox.ngx-checkbox-df>input[type="checkbox"] {
+    height: 1.125rem;
+    width: 1.125rem;
+}
+
+.ngx-checkbox.ngx-checkbox-lg>input[type="checkbox"] {
+    height: 1.375rem;
+    width: 1.375rem;
+}

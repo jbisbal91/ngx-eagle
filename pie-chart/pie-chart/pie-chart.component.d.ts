@@ -1,16 +1,16 @@
 import { ChangeDetectorRef, ElementRef, EventEmitter, OnInit } from '@angular/core';
 import { PieChart } from '../models';
 import * as i0 from "@angular/core";
-export type NgxPosition = 'bottom' | 'left' | 'right';
+export type NgxPosition = 'left' | 'right';
 export declare class PieChartComponent implements OnInit {
     private cdr;
     canvas: ElementRef<HTMLCanvasElement>;
     context: CanvasRenderingContext2D | null;
-    width: number;
     height: number;
-    value: PieChart[];
-    ngxPosition: string;
+    width: number;
     ngxGutter: number;
+    ngxPosition: NgxPosition;
+    value: PieChart[];
     partChartIndex: EventEmitter<number>;
     constructor(cdr: ChangeDetectorRef);
     ngOnInit(): void;
@@ -45,6 +45,6 @@ export declare class PieChartComponent implements OnInit {
     radianToDegree(rad: number): number;
     detectFill(mouseX: number, mouseY: number): boolean;
     static ɵfac: i0.ɵɵFactoryDeclaration<PieChartComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<PieChartComponent, "ngx-pie-chart", never, { "width": { "alias": "width"; "required": false; }; "height": { "alias": "height"; "required": false; }; "value": { "alias": "value"; "required": false; }; "ngxPosition": { "alias": "ngxPosition"; "required": false; }; "ngxGutter": { "alias": "ngxGutter"; "required": false; }; }, { "partChartIndex": "partChartIndex"; }, never, never, true, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<PieChartComponent, "ngx-pie-chart", never, { "height": { "alias": "height"; "required": false; }; "width": { "alias": "width"; "required": false; }; "ngxGutter": { "alias": "ngxGutter"; "required": false; }; "ngxPosition": { "alias": "ngxPosition"; "required": false; }; "value": { "alias": "value"; "required": false; }; }, { "partChartIndex": "partChartIndex"; }, never, never, true, never>;
     static ngAcceptInputType_ngxGutter: unknown;
 }

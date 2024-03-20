@@ -1,277 +1,125 @@
-.ngx-carousel-item {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    max-width: fit-content;
-  }
+.ngx-carousel {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: #000000d9;
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5715;
+  list-style: none;
+  font-feature-settings: "tnum";
+  display: block;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
 
-  .ngx-carousel {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    color: #000000d9;
-    font-size: 14px;
-    font-variant: tabular-nums;
-    line-height: 1.5715;
-    list-style: none;
-    font-feature-settings: "tnum";
-    overflow: auto;
-  }
-  
-  .ngx-carousel .slick-slider {
-    position: relative;
-    display: block;
-    box-sizing: border-box;
-    touch-action: pan-y;
-    -webkit-touch-callout: none;
-    -webkit-tap-highlight-color: transparent;
-  }
-  
-  .ngx-carousel .slick-list {
-    position: relative;
-    display: block;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
-  
-  .ngx-carousel .slick-list:focus {
-    outline: none;
-  }
-  
-  .ngx-carousel .slick-list.dragging {
-    cursor: pointer;
-  }
-  
-  .ngx-carousel .slick-list .slick-slide {
-    pointer-events: none;
-  }
-  
-  .ngx-carousel .slick-list .slick-slide input.ant-radio-input,
-  .ngx-carousel .slick-list .slick-slide input.ant-checkbox-input {
-    visibility: hidden;
-  }
-  
-  .ngx-carousel .slick-list .slick-slide.slick-active {
-    pointer-events: auto;
-  }
-  
-  .ngx-carousel .slick-list .slick-slide.slick-active input.ant-radio-input,
-  .ngx-carousel .slick-list .slick-slide.slick-active input.ant-checkbox-input {
-    visibility: visible;
-  }
-  
-  .ngx-carousel .slick-list .slick-slide > div > div {
-    vertical-align: bottom;
-  }
-  
-  .ngx-carousel .slick-slider .slick-track,
-  .ngx-carousel .slick-slider .slick-list {
-    transform: translateZ(0);
-    touch-action: pan-y;
-  }
-  
-  .ngx-carousel .slick-track {
-    position: relative;
-    top: 0;
-    left: 0;
-    display: flex;
-  }
-  
-  .ngx-carousel .slick-track:before,
-  .ngx-carousel .slick-track:after {
-    display: table;
-    content: "";
-  }
-  
-  .ngx-carousel .slick-track:after {
-    clear: both;
-  }
-  
-  .slick-loading .ngx-carousel .slick-track {
-    visibility: hidden;
-  }
-  
-  .ngx-carousel .slick-slide {
-    display: none;
-    float: left;
-    height: 100%;
-    min-height: 1px;
-  }
-  
-  .ngx-carousel .slick-slide img {
-    display: block;
-  }
-  
-  .ngx-carousel .slick-slide.slick-loading img {
-    display: none;
-  }
-  
-  .ngx-carousel .slick-slide.dragging img {
-    pointer-events: none;
-  }
-  
-  .ngx-carousel .slick-initialized .slick-slide {
-    display: block;
-  }
-  
-  .ngx-carousel .slick-loading .slick-slide {
-    visibility: hidden;
-  }
-  
-  .ngx-carousel .slick-vertical .slick-slide {
-    display: block;
-    height: auto;
-  }
-  
-  .ngx-carousel .slick-arrow.slick-hidden {
-    display: none;
-  }
-  
-  .ngx-carousel .slick-prev,
-  .ngx-carousel .slick-next {
-    top: 50%;
-    display: block;
-    width: 20px;
-    height: 20px;
-    margin-top: -10px;
-    padding: 0;
-    color: transparent;
-    font-size: 0;
-    line-height: 0;
-    background: transparent;
-    border: 0;
-    outline: none;
-    cursor: pointer;
-  }
-  
-  .ngx-carousel .slick-prev:hover,
-  .ngx-carousel .slick-next:hover,
-  .ngx-carousel .slick-prev:focus,
-  .ngx-carousel .slick-next:focus {
-    color: transparent;
-    background: transparent;
-    outline: none;
-  }
-  
-  .ngx-carousel .slick-prev:hover:before,
-  .ngx-carousel .slick-next:hover:before,
-  .ngx-carousel .slick-prev:focus:before,
-  .ngx-carousel .slick-next:focus:before {
-    opacity: 1;
-  }
-  
-  .ngx-carousel .slick-prev.slick-disabled:before,
-  .ngx-carousel .slick-next.slick-disabled:before {
-    opacity: 0.25;
-  }
-  
-  .ngx-carousel .slick-prev {
-    left: -25px;
-  }
-  
-  .ngx-carousel .slick-prev:before {
-    content: "\2190";
-  }
-  
-  .ngx-carousel .slick-next {
-    right: -25px;
-  }
-  
-  .ngx-carousel .slick-next:before {
-    content: "\2192";
-  }
-  
-  .ngx-carousel .slick-dots {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 15;
-    display: flex !important;
-    justify-content: center;
-    margin-right: 15%;
-    margin-left: 15%;
-    padding-left: 0;
-    list-style: none;
-  }
-  
-  .ngx-carousel .slick-dots-bottom {
-    bottom: 12px;
-  }
-  
-  .ngx-carousel .slick-dots-top {
-    top: 12px;
-    bottom: auto;
-  }
-  
-  .ngx-carousel .slick-dots li {
-    position: relative;
-    display: inline-block;
-    flex: 0 1 auto;
-    box-sizing: content-box;
-    width: 16px;
-    height: 3px;
-    margin: 0 3px;
-    padding: 0;
-    text-align: center;
-    text-indent: -999px;
-    vertical-align: top;
-    transition: all 0.5s;
-  }
-  
-  .ngx-carousel .slick-dots li button {
-    display: block;
-    width: 100%;
-    height: 3px;
-    padding: 0;
-    color: transparent;
-    font-size: 0;
-    background: #fff;
-    border: 0;
-    border-radius: 1px;
-    outline: none;
-    cursor: pointer;
-    opacity: 0.3;
-    transition: all 0.5s;
-  }
-  
-  .ngx-carousel .slick-dots li button:hover,
-  .ngx-carousel .slick-dots li button:focus {
-    opacity: 0.75;
-  }
-  
-  .ngx-carousel .slick-dots li.slick-active {
-    width: 24px;
-  }
-  
-  .ngx-carousel .slick-dots li.slick-active button {
-    background: #fff;
-    opacity: 1;
-  }
-  
-  .ngx-carousel .slick-dots li.slick-active:hover,
-  .ngx-carousel .slick-dots li.slick-active:focus {
-    opacity: 1;
-  }
-  
-  .ngx-carousel {
-    display: block;
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .slick-dots {
-    display: block;
-  }
-  
-  .slick-track {
-    opacity: 1;
-  }
-  
-  .slick-list {
-    direction: ltr;
-  }
-  
+.ngx-carousel .slick-list {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.ngx-carousel .slick-list.dragging {
+  cursor: pointer;
+}
+
+.ngx-carousel .slick-track {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.ngx-carousel .slick-dots {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 15;
+  display: flex !important;
+  justify-content: center;
+  margin-right: 15%;
+  margin-left: 15%;
+  padding-left: 0;
+  list-style: none;
+}
+
+.ngx-carousel .slick-dots-bottom {
+  bottom: 12px;
+}
+
+.ngx-carousel .slick-dots-top {
+  top: 12px;
+  bottom: auto;
+}
+
+.ngx-carousel .slick-dots li {
+  position: relative;
+  display: inline-block;
+  flex: 0 1 auto;
+  box-sizing: content-box;
+  width: 16px;
+  height: 3px;
+  margin: 0 3px;
+  padding: 0;
+  text-align: center;
+  text-indent: -999px;
+  vertical-align: top;
+  transition: all 0.5s;
+}
+
+.ngx-carousel .slick-dots li button {
+  display: block;
+  width: 100%;
+  height: 3px;
+  padding: 0;
+  color: transparent;
+  font-size: 0;
+  background: #fff;
+  border: 0;
+  border-radius: 1px;
+  outline: none;
+  cursor: pointer;
+  opacity: 0.3;
+  transition: all 0.5s;
+}
+
+.ngx-carousel .slick-dots li button:hover,
+.ngx-carousel .slick-dots li button:focus {
+  opacity: 0.75;
+}
+
+.ngx-carousel .slick-dots li.slick-active {
+  width: 24px;
+}
+
+.ngx-carousel .slick-dots li.slick-active button {
+  background: #fff;
+  opacity: 1;
+}
+
+.ngx-carousel .slick-dots li.slick-active:hover,
+.ngx-carousel .slick-dots li.slick-active:focus {
+  opacity: 1;
+}
+
+.slick-dots {
+  display: block;
+}
+
+.slick-list {
+  direction: ltr;
+}
+
+.ngx-carousel-item {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}

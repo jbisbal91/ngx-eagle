@@ -1,21 +1,13 @@
 import * as i0 from '@angular/core';
-import { Component, Input, booleanAttribute, ChangeDetectionStrategy, ContentChildren, NgModule } from '@angular/core';
+import { Component, Input, QueryList, booleanAttribute, ContentChildren, ViewChild, HostListener, NgModule } from '@angular/core';
+import { Guid } from 'ngx-eagle/core/services';
 import { NgForOf } from '@angular/common';
 
 class CarouselItemComponent {
     constructor() {
-        this.id = '';
+        this.id = Guid.create();
         this.isActive = false;
         this.disabled = false;
-    }
-    ngOnInit() {
-        this.id = this.guid();
-    }
-    guid() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            const r = (Math.random() * 16) | 0, v = c == 'x' ? r : (r & 0x3) | 0x8;
-            return v.toString(16);
-        });
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CarouselItemComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
     static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: CarouselItemComponent, isStandalone: true, selector: "ngx-carousel-item", inputs: { disabled: "disabled" }, host: { classAttribute: "ngx-carousel-item" }, ngImport: i0, template: `
@@ -43,14 +35,20 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
             }] } });
 
 class CarouselComponent {
-    constructor(cdr) {
-        this.cdr = cdr;
+    constructor(renderer) {
+        this.renderer = renderer;
+        this.carouselItems = new QueryList();
         this.ngxAutoPlaySpeed = 3000;
+        this.ngxDotPosition = 'bottom';
     }
     ngAfterContentInit() {
         this.carouselItems.first.isActive = true;
-        this.currentItem = this.carouselItems.first;
-        this.cdr.markForCheck();
+        this.currentCarouselItem = this.carouselItems.first;
+        if (this.currentCarouselItem) {
+            setTimeout(() => {
+                this.onClick(this.currentCarouselItem);
+            });
+        }
         if (this.ngxAutoPlay) {
             this.autoPlay();
         }
@@ -62,35 +60,44 @@ class CarouselComponent {
             this.autoPlay(index);
         }, this.ngxAutoPlaySpeed);
     }
-    onClick(carouselItem) {
-        this.carouselItems?.forEach((ci) => {
-            ci.isActive = ci.id === carouselItem.id ? true : false;
-        });
-        const element = document.getElementById(carouselItem.id);
-        element?.scrollIntoView({ behavior: 'smooth' });
+    resize() {
+        this.onClick(this.currentCarouselItem);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CarouselComponent, deps: [{ token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "16.1.0", version: "16.2.12", type: CarouselComponent, isStandalone: true, selector: "ngx-carousel", inputs: { ngxAutoPlay: ["ngxAutoPlay", "ngxAutoPlay", booleanAttribute], ngxAutoPlaySpeed: "ngxAutoPlaySpeed" }, host: { classAttribute: "ngx-carousel" }, queries: [{ propertyName: "carouselItems", predicate: CarouselItemComponent }], ngImport: i0, template: `
+    onClick(carouselItem) {
+        let index = 0;
+        this.carouselItems?.forEach((ci, i) => {
+            ci.isActive = ci.id === carouselItem.id;
+            if (ci.isActive) {
+                this.currentCarouselItem = ci;
+                index = i;
+            }
+        });
+        const carouselRef = document.getElementById(carouselItem.id);
+        const carouselProp = carouselRef.getBoundingClientRect();
+        this.renderer.setStyle(this.slickTrackRef.nativeElement, 'transform', `translateX(${carouselProp.width * -index}px)`);
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CarouselComponent, deps: [{ token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "16.1.0", version: "16.2.12", type: CarouselComponent, isStandalone: true, selector: "ngx-carousel", inputs: { ngxAutoPlay: ["ngxAutoPlay", "ngxAutoPlay", booleanAttribute], ngxAutoPlaySpeed: "ngxAutoPlaySpeed", ngxDotPosition: "ngxDotPosition" }, host: { listeners: { "window:resize": "resize($event)" }, classAttribute: "ngx-carousel" }, queries: [{ propertyName: "carouselItems", predicate: CarouselItemComponent }], viewQueries: [{ propertyName: "slickTrackRef", first: true, predicate: ["slick_track"], descendants: true }], ngImport: i0, template: `
     <div class="ngx-carousel">
-      <div class="slick-initialized slick-slider">
-        <div class="slick-list">
-          <div class="slick-track">
-            <ng-content></ng-content>
-          </div>
+      <div class="slick-list">
+        <div #slick_track class="slick-track">
+          <ng-content></ng-content>
         </div>
-
-        <ul class="slick-list slick-dots slick-dots-bottom">
-          <li
-            [class.slick-active]="carouselItem.isActive"
-            *ngFor="let carouselItem of carouselItems"
-            (click)="onClick(carouselItem)"
-          >
-            <button>{{ carouselItem.id }}</button>
-          </li>
-        </ul>
       </div>
+      <ul
+        class="slick-list slick-dots"
+        [class.slick-dots-top]="ngxDotPosition === 'top'"
+        [class.slick-dots-bottom]="ngxDotPosition === 'bottom'"
+      >
+        <li
+          [class.slick-active]="carouselItem.isActive"
+          *ngFor="let carouselItem of carouselItems"
+        >
+          <button (click)="onClick(carouselItem)"></button>
+        </li>
+      </ul>
     </div>
-  `, isInline: true, dependencies: [{ kind: "directive", type: NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush }); }
+  `, isInline: true, dependencies: [{ kind: "directive", type: NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }] }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: CarouselComponent, decorators: [{
             type: Component,
@@ -98,33 +105,32 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     selector: 'ngx-carousel',
                     template: `
     <div class="ngx-carousel">
-      <div class="slick-initialized slick-slider">
-        <div class="slick-list">
-          <div class="slick-track">
-            <ng-content></ng-content>
-          </div>
+      <div class="slick-list">
+        <div #slick_track class="slick-track">
+          <ng-content></ng-content>
         </div>
-
-        <ul class="slick-list slick-dots slick-dots-bottom">
-          <li
-            [class.slick-active]="carouselItem.isActive"
-            *ngFor="let carouselItem of carouselItems"
-            (click)="onClick(carouselItem)"
-          >
-            <button>{{ carouselItem.id }}</button>
-          </li>
-        </ul>
       </div>
+      <ul
+        class="slick-list slick-dots"
+        [class.slick-dots-top]="ngxDotPosition === 'top'"
+        [class.slick-dots-bottom]="ngxDotPosition === 'bottom'"
+      >
+        <li
+          [class.slick-active]="carouselItem.isActive"
+          *ngFor="let carouselItem of carouselItems"
+        >
+          <button (click)="onClick(carouselItem)"></button>
+        </li>
+      </ul>
     </div>
   `,
-                    changeDetection: ChangeDetectionStrategy.OnPush,
                     host: {
                         class: 'ngx-carousel',
                     },
                     standalone: true,
                     imports: [NgForOf],
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }]; }, propDecorators: { carouselItems: [{
+        }], ctorParameters: function () { return [{ type: i0.Renderer2 }]; }, propDecorators: { carouselItems: [{
                 type: ContentChildren,
                 args: [CarouselItemComponent]
             }], ngxAutoPlay: [{
@@ -132,6 +138,14 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                 args: [{ transform: booleanAttribute }]
             }], ngxAutoPlaySpeed: [{
                 type: Input
+            }], ngxDotPosition: [{
+                type: Input
+            }], slickTrackRef: [{
+                type: ViewChild,
+                args: ['slick_track']
+            }], resize: [{
+                type: HostListener,
+                args: ['window:resize', ['$event']]
             }] } });
 
 class CarouselModule {
@@ -146,6 +160,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     imports: [CarouselComponent, CarouselItemComponent],
                 }]
         }] });
+
+const DotPosition = ['bottom', 'top'];
 
 /**
  * Generated bundle index. Do not edit.

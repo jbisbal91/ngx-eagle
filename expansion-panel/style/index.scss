@@ -2,66 +2,90 @@
   width: 100%;
 }
 
-.ngx-expansion-panel.card-epanel {
-  color: var(--ngx-theme-color-epanel);
+.exp-panel.card-type {
+  border-radius: 8px;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  margin-bottom: 8px;
 }
 
-.card-epanel.card-bg {
-  background-color: var(--ngx-theme-bg-epanel);
-}
-
-.card-epanel .rotate {
-  rotate: 180deg;
-  transition: rotate 0.2s ease-out;
-}
-
-.card-epanel .no-rotate {
+.exp-panel .rotate-left {
   rotate: 0deg;
   transition: rotate 0.2s ease-out;
 }
 
-.card-epanel.box-shadow {
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
-    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+.exp-panel .no-rotate-left {
+  rotate: -90deg;
+  transition: rotate 0.2s ease-out;
 }
 
-.card-epanel.mt-4 {
-  margin-top: 1rem;
-  /* 16px */
+.exp-panel .rotate-right {
+  rotate: 180deg;
+  transition: rotate 0.2s ease-out;
 }
 
-.card-epanel.mb-4 {
-  margin-bottom: 1rem;
+.exp-panel .no-rotate-right {
+  rotate: 0deg;
+  transition: rotate 0.2s ease-out;
 }
 
-.card-epanel.p-4 {
-  p: 1rem;
-}
-
-.card-epanel .arrow {
-  filter: var(--ngx-theme-filter-epanel-arrow);
+.exp-panel .arrow {
+  filter: currentColor;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.card-epanel .divider {
-  border-top: 1px solid;
-}
-
-.card-epanel.rounded-lg {
-  border-radius: 0.5rem;
-  /* 8px */
-}
-
-.card-epanel .card-header {
+.exp-panel .header {
   display: flex;
   justify-content: space-between;
-  font-size: 1.125rem;
-  line-height: 1.75rem;
-  font-weight: 600;
   cursor: pointer;
-  height: 2.5rem;
+  min-height: 2.875rem;
   width: 100%;
   align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  word-break: break-word;
+}
+
+.exp-panel>.header span {
+  font-size: 1rem;
+  line-height: 1rem;
+  font-weight: 400;
+}
+
+.exp-panel .content {
+  padding: 1rem;
+  word-break: break-word;
+}
+
+.exp-panel .content-default {
+  padding-left: 1rem;
+  word-break: break-word;
+}
+
+.border-bottom-header {
+  border-bottom: 1px solid currentColor;
+}
+
+.border-bottom-exp-item {
+  border-bottom: 1px solid currentColor;
+}
+
+.exp-panel.bordered-type {
+  border-left: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  border-top: 0.5px solid currentColor;
+}
+
+.exp-panel>.header.expand-icon-position {
+  direction: rtl;
+  justify-content: end !important;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.exp-panel>.header.disabled {
+  opacity: 0.65;
+  cursor: no-drop;
 }

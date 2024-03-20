@@ -14,5 +14,6 @@ export declare class TableDirective implements AfterViewInit {
     private addScroll;
     static ɵfac: i0.ɵɵFactoryDeclaration<TableDirective, never>;
     static ɵdir: i0.ɵɵDirectiveDeclaration<TableDirective, "table[ngx-table]", never, { "ngxScroll": { "alias": "ngxScroll"; "required": false; }; "ngxBordered": { "alias": "ngxBordered"; "required": false; }; }, {}, never, never, true, never>;
+    static ngAcceptInputType_ngxBordered: unknown;
 }
 export {};

@@ -1,25 +1,17 @@
 import * as i0 from '@angular/core';
-import { Component, Input, QueryList, ChangeDetectionStrategy, ContentChildren, NgModule } from '@angular/core';
+import { booleanAttribute, Component, Input, EventEmitter, QueryList, ChangeDetectionStrategy, ContentChildren, Output, NgModule } from '@angular/core';
 import { NgIf, NgForOf } from '@angular/common';
+import { Guid } from 'ngx-eagle/core/services';
 
 class TabComponent {
     constructor() {
-        this.id = '';
+        this.id = Guid.create();
         this.isActive = false;
-        this.label = '';
         this.disabled = false;
-    }
-    ngOnInit() {
-        this.id = this.guid();
-    }
-    guid() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            const r = (Math.random() * 16) | 0, v = c == 'x' ? r : (r & 0x3) | 0x8;
-            return v.toString(16);
-        });
+        this.label = '';
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: TabComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: TabComponent, isStandalone: true, selector: "ngx-tab", inputs: { label: "label", disabled: "disabled" }, ngImport: i0, template: `
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "16.1.0", version: "16.2.12", type: TabComponent, isStandalone: true, selector: "ngx-tab", inputs: { disabled: ["disabled", "disabled", booleanAttribute], label: "label" }, ngImport: i0, template: `
     <div [id]="id" *ngIf="isActive">
       <ng-content></ng-content>
     </div>
@@ -37,27 +29,41 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     standalone: true,
                     imports: [NgIf],
                 }]
-        }], propDecorators: { label: [{
-                type: Input
-            }], disabled: [{
+        }], propDecorators: { disabled: [{
+                type: Input,
+                args: [{ transform: booleanAttribute }]
+            }], label: [{
                 type: Input
             }] } });
 
 class TabGroupComponent {
+    get ngxSelectedIndex() {
+        return this.internalSelectedIndex;
+    }
+    set ngxSelectedIndex(index) {
+        if (this.internalSelectedIndex !== index) {
+            this.internalSelectedIndex = index;
+            this.ngxSelectedIndexChange.emit(index);
+        }
+    }
     constructor(renderer, cdr) {
         this.renderer = renderer;
         this.cdr = cdr;
-        this.ngxTabPosition = 'top';
-        this.ngxMode = 'default';
         this.ngxAlignTabs = 'start';
+        this.ngxMode = 'default';
+        this.ngxTabPosition = 'top';
+        this.internalSelectedIndex = 0;
+        this.ngxSelectedIndexChange = new EventEmitter();
     }
-    ngOnInit() {
-        setTimeout(() => {
-            this.selectTab(this.tabs?.first);
-            this.cdr.detectChanges();
-        });
+    ngAfterContentInit() {
+        this.selectTab(this.internalSelectedIndex);
     }
-    selectTab(tab) {
+    findTabByIndex(index) {
+        const tabs = this.tabs.toArray();
+        return tabs[index];
+    }
+    selectTab(index) {
+        let tab = this.findTabByIndex(index);
         if (tab?.disabled) {
             return;
         }
@@ -65,9 +71,13 @@ class TabGroupComponent {
         if (tab) {
             tab.isActive = true;
         }
+        this.ngxSelectedIndexChange.emit(index);
         this.cdr.markForCheck();
     }
     closeTab(tab) {
+        if (tab?.disabled) {
+            return;
+        }
         const tabs = this.tabs.toArray();
         let index = tabs.findIndex((tb) => tb.id === tab.id);
         tabs.splice(index, 1);
@@ -76,11 +86,11 @@ class TabGroupComponent {
         const tabContent = document.getElementById(tab.id);
         this.renderer.removeChild(tabContent?.parentNode, tabContent);
         if (tab.isActive) {
-            this.selectTab(this.tabs.first);
+            this.selectTab(0);
         }
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: TabGroupComponent, deps: [{ token: i0.Renderer2 }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: TabGroupComponent, isStandalone: true, selector: "ngx-tab-group", inputs: { ngxTabPosition: "ngxTabPosition", ngxMode: "ngxMode", ngxAlignTabs: "ngxAlignTabs" }, host: { properties: { "class.ngx-tab-position-top": "ngxTabPosition === 'top'", "class.ngx-tab-position-left": "ngxTabPosition === 'left'", "class.ngx-tab-position-right": "ngxTabPosition === 'right'" }, classAttribute: "ngx-tab-group" }, queries: [{ propertyName: "tabs", predicate: TabComponent }], ngImport: i0, template: `
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: TabGroupComponent, isStandalone: true, selector: "ngx-tab-group", inputs: { ngxAlignTabs: "ngxAlignTabs", ngxMode: "ngxMode", ngxTabPosition: "ngxTabPosition", ngxSelectedIndex: "ngxSelectedIndex" }, outputs: { ngxSelectedIndexChange: "ngxSelectedIndexChange" }, host: { properties: { "class.ngx-tab-position-top": "ngxTabPosition === 'top'", "class.ngx-tab-position-left": "ngxTabPosition === 'left'", "class.ngx-tab-position-right": "ngxTabPosition === 'right'" }, classAttribute: "ngx-tab-group" }, queries: [{ propertyName: "tabs", predicate: TabComponent }], ngImport: i0, template: `
     <ul
       [class.ngx-tab-group-start]="ngxAlignTabs === 'start'"
       [class.ngx-tab-group-end]="ngxAlignTabs === 'end'"
@@ -94,10 +104,10 @@ class TabGroupComponent {
         [class.ngx-tab-position-top]="ngxTabPosition === 'top'"
         [class.ngx-tab-position-left]="ngxTabPosition === 'left'"
         [class.ngx-tab-position-right]="ngxTabPosition === 'right'"
-        *ngFor="let tab of tabs"
+        *ngFor="let tab of tabs; let ind = index"
         [class.active]="tab.isActive"
         [class.disabled]="tab.disabled"
-        (click)="selectTab(tab)"
+        (click)="selectTab(ind)"
       >
         <span
           [class.ml-4]="ngxTabPosition === 'left'"
@@ -105,7 +115,6 @@ class TabGroupComponent {
           [class.ml-2]="ngxTabPosition === 'right'"
           >{{ tab.label }}</span
         >
-
         <svg
           class="ngx-tab-close"
           [class.ngx-tab-position-left]="ngxTabPosition === 'left'"
@@ -125,7 +134,7 @@ class TabGroupComponent {
     </ul>
 
     <div
-      class="mt-2"
+      class="ngx-tab-content-holder"
       [class.ml-4]="ngxTabPosition === 'left'"
       [class.mr-4]="ngxTabPosition === 'right'"
     >
@@ -151,10 +160,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
         [class.ngx-tab-position-top]="ngxTabPosition === 'top'"
         [class.ngx-tab-position-left]="ngxTabPosition === 'left'"
         [class.ngx-tab-position-right]="ngxTabPosition === 'right'"
-        *ngFor="let tab of tabs"
+        *ngFor="let tab of tabs; let ind = index"
         [class.active]="tab.isActive"
         [class.disabled]="tab.disabled"
-        (click)="selectTab(tab)"
+        (click)="selectTab(ind)"
       >
         <span
           [class.ml-4]="ngxTabPosition === 'left'"
@@ -162,7 +171,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
           [class.ml-2]="ngxTabPosition === 'right'"
           >{{ tab.label }}</span
         >
-
         <svg
           class="ngx-tab-close"
           [class.ngx-tab-position-left]="ngxTabPosition === 'left'"
@@ -182,7 +190,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
     </ul>
 
     <div
-      class="mt-2"
+      class="ngx-tab-content-holder"
       [class.ml-4]="ngxTabPosition === 'left'"
       [class.mr-4]="ngxTabPosition === 'right'"
     >
@@ -202,12 +210,16 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
         }], ctorParameters: function () { return [{ type: i0.Renderer2 }, { type: i0.ChangeDetectorRef }]; }, propDecorators: { tabs: [{
                 type: ContentChildren,
                 args: [TabComponent]
-            }], ngxTabPosition: [{
+            }], ngxAlignTabs: [{
                 type: Input
             }], ngxMode: [{
                 type: Input
-            }], ngxAlignTabs: [{
+            }], ngxTabPosition: [{
                 type: Input
+            }], ngxSelectedIndex: [{
+                type: Input
+            }], ngxSelectedIndexChange: [{
+                type: Output
             }] } });
 
 const COMPONENTS = [TabComponent, TabGroupComponent];
@@ -223,6 +235,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                     exports: [COMPONENTS],
                 }]
         }] });
+
+const TabGroupPosition = ['top', 'left', 'right'];
+const TabGroupAlign = ['start', 'center', 'end'];
+const TabGroupMode = ['default', 'closeable'];
 
 /**
  * Generated bundle index. Do not edit.
