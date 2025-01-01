@@ -1,0 +1,101 @@
+:host {
+        display: inline-block;
+}
+
+.spinner {
+        position: relative;
+        display: flex;
+        justify-content: center;
+}
+
+.spinner-sm {
+        width: 36px;
+        height: 36px;
+}
+
+.spinner-md {
+        width: 44px;
+        height: 44px;
+}
+
+.spinner-lg {
+        width: 64px;
+        height: 64px;
+}
+
+/* Spinner common styles */
+.spinner-bars,
+.spinner-dots {
+        position: absolute;
+        background: var(--ngx-spinner-bars-bg, #000000);
+        animation: spinner-animation 1.2s linear infinite;
+}
+
+.spinner-bars {
+        border-radius: 20%;
+}
+
+.spinner-dots {
+        border-radius: 50%;
+}
+
+/* Spinner sizes */
+.spinner-sm .spinner-bars,
+.spinner-sm .spinner-dots {
+        transform-origin: 2px 18px;
+        margin: 0 4px;
+}
+
+.spinner-md .spinner-bars,
+.spinner-md .spinner-dots {
+        transform-origin: 2px 22px;
+        margin: 0 6px;
+}
+
+.spinner-lg .spinner-bars,
+.spinner-lg .spinner-dots {
+        transform-origin: 3px 33px;
+        margin: 0 8px;
+}
+
+/* Bars sizes */
+.spinner-sm .spinner-bars {
+        width: 3px;
+        height: 10px;
+}
+
+.spinner-md .spinner-bars {
+        width: 4px;
+        height: 14px;
+}
+
+.spinner-lg .spinner-bars {
+        width: 5px;
+        height: 20px;
+}
+
+/* Dots sizes */
+.spinner-sm .spinner-dots {
+        width: 4px;
+        height: 4px;
+}
+
+.spinner-md .spinner-dots {
+        width: 6px;
+        height: 6px;
+}
+
+.spinner-lg .spinner-dots {
+        width: 10px;
+        height: 10px;
+}
+
+@keyframes spinner-animation {
+        0% {
+                opacity: 1;
+        }
+
+        100% {
+                opacity: 0;
+        }
+}

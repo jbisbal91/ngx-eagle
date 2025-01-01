@@ -1,0 +1,112 @@
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    color: var(--ngx-tooltip-color,#f5f5f5) !important;
+    text-align: center;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px !important;
+    font-family: system-ui;
+    background-color: var(--ngx-tooltip-bg, #595959);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15),  /* sombra suave y ligera */
+    0 4px 8px rgba(0, 0, 0, 0.10),  /* sombra mediana */
+    0 8px 16px rgba(0, 0, 0, 0.05); /* sombra difusa y más ligera */
+    pointer-events: none;
+    z-index: 1251;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    position: absolute;
+}
+
+/* Flecha para la posición superior (default) */
+.tooltip-top .tooltiptext {
+    bottom: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.tooltip-top .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--ngx-tooltip-bg, #595959) transparent transparent transparent;
+}
+
+/* Flecha para la posición inferior */
+.tooltip-bottom .tooltiptext {
+    top: 130%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.tooltip-bottom .tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent var(--ngx-tooltip-bg, #595959) transparent;
+}
+
+/* Flecha para la posición a la izquierda */
+.tooltip-left .tooltiptext {
+    top: 50%;
+    right: 115%;
+    /* Ajusta la distancia del tooltip */
+    transform: translateY(-50%);
+}
+
+.tooltip-left .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent var(--ngx-tooltip-bg, #595959);
+    margin-left: 0;
+    /* Ajusta la distancia de la flecha */
+}
+
+/* Flecha para la posición a la derecha */
+.tooltip-right .tooltiptext {
+    top: 50%;
+    left: 115%;
+    /* Ajusta la distancia del tooltip */
+    transform: translateY(-50%);
+}
+
+.tooltip-right .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    transform: translateY(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent var(--ngx-tooltip-bg, #595959) transparent transparent;
+    margin-right: 0;
+    /* Ajusta la distancia de la flecha */
+}
+
+.tooltip:hover .tooltiptext {
+    opacity: 1;
+    visibility: visible;
+}
+
+.tooltip:focus-within .tooltiptext,
+.tooltip:focus .tooltiptext {
+    opacity: 1;
+    visibility: visible;
+}

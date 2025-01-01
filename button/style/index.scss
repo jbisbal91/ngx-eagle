@@ -1,67 +1,111 @@
-.ngx-button {
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
-  border-width: 1px;
-  border-style: solid;
-  color: inherit;
-  background: none;
+  border: 1px solid transparent;
+  color: var(--neutral-1, #ffffff);
   font-family: inherit;
   text-decoration: none;
   white-space: nowrap;
   gap: 0.25rem;
   vertical-align: middle;
-  -webkit-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   cursor: pointer;
   outline: none;
-  -webkit-appearance: none;
+  appearance: none;
   position: relative;
-  transition: color 0.2s ease-in-out;
-}
+  transition: color 0.2s, background-color 0.2s, border-color 0.2s ease-in-out;
 
-.ngx-button:disabled {
-  opacity: 0.7;
-  cursor: no-drop;
-}
+  &.button-filled,
+  &.button-elevated {
+    background-color: var(--primary-6, #1890ff);
+    color: var(--neutral-1, #ffffff);
+  }
 
-.ngx-button.ngx-button-sm {
-  font-size: 0.75rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  height: 1.5rem;
-}
+  &.button-outlined {
+    background-color: transparent;
+    border-color: var(--primary-6, #1890ff);
+    color: var(--primary-6, #1890ff);
 
-.ngx-button.ngx-button-md {
-  font-size: 0.875rem;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-  height: 2rem;
-}
+    &:hover {
+      color: var(--neutral-1, #ffffff);
+      background-color: var(--primary-5, #40a9ff);
+    }
+  
+    &:active {
+      color: var(--neutral-1, #ffffff);
+      background-color: var(--primary-7, #096dd9);
+    }
+  }
 
-.ngx-button.ngx-button-lg {
-  font-size: 1rem;
-  line-height: 1.5;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  height: 2.5rem;
-}
+  &.button-text {
+    background-color: transparent;
+    border: none;
+    color: var(--primary-6, #1890ff);
 
-.ngx-button.ngx-rounded-sm {
-  border-radius: 2px;
-}
+    &:hover {
+      color: var(--primary-5, #40a9ff);
+      background-color: transparent !important;
+    }
 
-.ngx-button.ngx-rounded-md {
-  border-radius: 4px;
-}
+    &:active {
+      color: var(--primary-7, #096dd9);
+      background-color: transparent !important;
+    }
+  }
 
-.ngx-button.ngx-rounded-lg {
-  border-radius: 6px;
-}
+  &.button-elevated {
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  }
 
-.ngx-button.ngx-rounded-full {
-  border-radius: 9999px;
-}
+  &:hover {
+    border-color: var(--primary-5, #40a9ff) !important;
+    background-color: var(--primary-5, #40a9ff) !important;
+  }
 
-.ngx-button.ngx-button-elevated {
-  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  &:active {
+    border-color: var(--primary-7, #096dd9) !important;
+    background-color: var(--primary-7, #096dd9) !important;
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  &.button-sm {
+    font-size: 0.75rem;
+    padding: 0 1rem;
+    height: 1.5rem;
+  }
+
+  &.button-md {
+    font-size: 0.875rem;
+    padding: 0 1.25rem;
+    height: 2rem;
+  }
+
+  &.button-lg {
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 0 1.5rem;
+    height: 2.5rem;
+  }
+
+  &.button-rounded-sm {
+    border-radius: 2px;
+  }
+
+  &.button-rounded-md {
+    border-radius: 4px;
+  }
+
+  &.button-rounded-lg {
+    border-radius: 6px;
+  }
+
+  &.button-rounded-full {
+    border-radius: 9999px;
+  }
 }

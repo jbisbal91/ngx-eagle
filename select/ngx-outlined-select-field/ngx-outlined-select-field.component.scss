@@ -1,0 +1,171 @@
+:host {
+    border-radius: 2px;
+    border-color: currentColor;
+    width: 212px;
+    display: block;
+}
+
+.ngx-outlined-select-field {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    max-height: inherit;
+    min-height: inherit;
+    height: inherit;
+    max-width: inherit;
+    min-width: inherit;
+    width: inherit;
+    position: relative;
+}
+
+.ngx-outlined-select-field>.ngx-nat-input:hover {
+    border-color: blue;
+    cursor: pointer;
+}
+
+.ngx-outlined-select-field>.ngx-nat-input:focus {
+    border-color: blue;
+}
+
+.ngx-outlined-select-field>.ngx-nat-input:disabled {
+    opacity: 0.75;
+    cursor: no-drop;
+}
+
+.ngx-outlined-select-field>.ngx-nat-input.invalid {
+    border-color: red;
+}
+
+.ngx-outlined-select-field>.ngx-input-label {
+    align-items: center;
+    max-width: max-content;
+    position: absolute;
+    font-size: 0.875rem;
+    left: 0.75rem;
+    transition: top 0.3s, font-size 0.3s;
+    line-height: 14px;
+}
+
+.container {
+    display: inline-flex;
+    max-height: inherit;
+    min-height: inherit;
+    height: 100%;
+    max-width: inherit;
+    min-width: inherit;
+    width: inherit;
+    align-items: center;
+    overflow: hidden;
+}
+
+.ngx-outlined-select-field>.suffix.invalid {
+    color: red;
+}
+
+.ngx-outlined-select-field>.suffix {
+     display: flex;
+    align-items: center;
+}
+
+.ngx-outlined-select-field>.arrow-drop-down {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    align-items: center;
+    display: flex;
+}
+
+.ngx-outlined-select-field>.arrow-drop-down.invalid {
+    color: red;
+}
+
+.ngx-outlined-select-field>.ngx-nat-input+.suffix {
+    position: absolute;
+    right: 0;
+    height: 100%;
+}
+
+.ngx-outlined-select-field>.ngx-nat-input {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    height: 100%;
+    min-height: 2rem;
+    max-height: 3.5rem;
+    z-index: 1;
+    border-radius: 2px;
+}
+
+.ngx-outlined-select-field>.ngx-nat-input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.ngx-outlined-select-field>.ngx-nat-input {
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    background: none;
+    font-family: inherit;
+    font-size: inherit;
+    text-decoration: none;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    outline: none;
+    position: relative;
+    transition: color 0.2s ease-in-out;
+    //border: none;
+    color: currentColor;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+}
+
+.ngx-options-container {
+    display: grid;
+    width: inherit;
+    position: fixed;
+    box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    max-height: 15rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    pointer-events: auto;
+    z-index: 1000;
+    visibility: hidden;
+}
+
+.ngx-options-visible {
+    visibility: visible;
+}
+
+.position-top {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
+
+.position-bottom {
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.ngx-options-container::-webkit-scrollbar {
+    width: 4px;
+    background-color: var(--ngx-option-bg-color, #FFFFFF);
+    border-bottom-right-radius: 8px;
+}
+
+.ngx-options-container::-webkit-scrollbar-thumb {
+    background-color: #B9B9B9;
+    border-radius: inherit;
+}

@@ -1,75 +1,82 @@
+.ngx-table-container {
+    width: 100%;
+    max-height: var(--max-height, 300px);
+    /* Altura máxima predeterminada o variable */
+    overflow: auto;
+}
+
 .ngx-table {
     margin: 0;
     width: 100%;
     max-width: none;
     border-width: 0;
     border-color: inherit;
-    border-collapse: separate;
+    border-collapse: collapse;
+    /* Colapsa los bordes */
     border-spacing: 0;
     empty-cells: show;
+    table-layout: fixed;
+    /* Ajusta el ancho de columnas proporcionalmente */
+}
+
+.ngx-table thead,
+.ngx-table tbody {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
 }
 
 .ngx-table thead {
-    background-color: var(--table-thead-background-color, #f5f5f5);
+    background-color: var(--ngx-table-thead-bg, #ECEEF0);
     position: sticky;
     top: 0;
     font-weight: 600;
-    z-index: 100;
+    z-index: 1;
+}
+
+.ngx-table tbody {
+    display: table;
+    /* Asegura que se mantenga como tabla */
+    width: 100%;
+    max-height: var(--max-height, 300px);
+    /* Altura máxima predeterminada o variable */
+    overflow: auto;
 }
 
 .ngx-table th,
 .ngx-table td {
     text-align: left;
-    padding-left: 0.5rem;
-    padding-right: 1.5rem;
-    border-bottom: 1px solid #dddddd;
-    font-size: 0.875rem;
+    padding: 12px;
+    border-bottom: 1px solid var(--ngx-table-border-color, #d1d9e0b3);
+    font-size: 14px;
+    position: relative;
+    /* Necesario para el control de redimensionamiento */
+    width: auto;
+    /* Asegura el ancho adecuado de las celdas */
+    min-width: auto;
+    /* Permite ajustar el ancho mínimo de las celdas */
 }
 
-.ngx-table-bordered .ngx-column-group th {
-    border-bottom: none;
-}
-
-/*** Start of border styles for ngx-table ***/
-/* Style for cells (th and td) of the ngx-table-bordered table with right border */
+/* Estilos de tabla con bordes */
 .ngx-table-bordered th,
 .ngx-table-bordered td {
-    border-right: 1px solid #dddddd;
-    min-width: 3.125rem;
+    border-right: 1px solid var(--ngx-table-border-color, #d1d9e0b3);
 }
 
-/* Style for the first cell (th and td) of the ngx-table-bordered table with left border */
 .ngx-table-bordered th:first-child,
 .ngx-table-bordered td:first-child {
-    border-left: 1px solid #dddddd;
+    border-left: 1px solid var(--ngx-table-border-color, #d1d9e0b3);
 }
 
-/* Style for th cells of the ngx-table-bordered table with top border */
 .ngx-table-bordered th {
-    border-top: 1px solid #dddddd;
+    border-top: 1px solid var(--ngx-table-border-color, #d1d9e0b3);
 }
 
-/*** End of border styles for ngx-table ***/
-.ngx-table th {    
-    position: relative;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.ngx-table td {
-    border-bottom: 1px solid #dddddd;
-    white-space: break-spaces;
-}
-
-.ngx-table thead>tr,
-.ngx-table tbody>tr {
-    height: 3rem;
-}
-
+/* Estilos adicionales */
 .ngx-table tbody>tr:hover {
     cursor: default;
-    background-color: var(--table-tr-hover-background-color, #f5f5f5);
+    background-color: var(--ngx-table-row-bg, #ECEEF0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s;
 }
 
@@ -80,76 +87,98 @@
     align-items: center;
 }
 
-/* Barra de desplazamiento */
-.ngx-table-container::-webkit-scrollbar {
+/* Estilos del scrollbar */
+.ngx-table tbody::-webkit-scrollbar {
     width: 8px;
-    /* Ancho para ambos scrolls */
     height: 8px;
-    /* Altura para ambos scrolls */
-    background-color: #F1F1F1;
+    background-color: #f1f1f1;
     border-radius: 10px;
-    /* Radio de borde para ambos scrolls */
 }
 
-.ngx-table-container::-webkit-scrollbar-thumb {
-    background-color: #C1C1C1;
+.ngx-table tbody::-webkit-scrollbar-thumb {
+    background-color: #c1c1c1;
     border-radius: 10px;
-    /* Radio de borde para ambos scrolls */
 }
 
-.ngx-table .ngx-th-sort-arrow {
+.ngx-table .ngx-table-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ngx-table-column-sorters {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
     cursor: pointer;
 }
 
-.ngx-table .ngx-sort-arrow {
+.ngx-table .ngx-table-column-sorters .ngx-sort-arrow {
     width: 8px;
     display: flex;
     justify-content: center;
     gap: 2px;
     flex-direction: column;
     cursor: pointer;
-    position: absolute;
-    top: 50%;
-    right: 0.5rem;
-    transform: translate(-50%, -50%);
 }
 
-.ngx-table .ngx-sort-arrow .ngx-arrow-up {
+.ngx-table .ngx-table-column-sorters .ngx-sort-arrow .ngx-arrow-up {
     width: 0;
     height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     transition: border-bottom 0.2s ease-in-out;
-    border-bottom: 7px solid #BFBFBF;
+    border-bottom: 7px solid var(--ngx-table-border-color, #d1d9e0b3);
 }
 
-.ngx-table .ngx-sort-arrow .ngx-arrow-up.active {
-    border-bottom: 7px solid #1890FF;
+.ngx-table .ngx-table-column-sorters .ngx-arrow-up.active {
+    border-bottom: 7px solid var(--primary-6) !important;
 }
 
-.ngx-table .ngx-sort-arrow .ngx-arrow-down {
+.ngx-table .ngx-table-column-sorters .ngx-arrow-down {
     width: 0;
     height: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     transition: border-top 0.2s ease-in-out;
-    border-top: 7px solid #BFBFBF;
+    border-top: 7px solid var(--ngx-table-border-color, #d1d9e0b3);
 }
 
-.ngx-table .ngx-sort-arrow .ngx-arrow-down.active {
-    border-top: 7px solid #1890FF;
+.ngx-table .ngx-table-column-sorters .ngx-arrow-down.active {
+    border-top: 7px solid var(--primary-6);
 }
 
-.ngx-table .ngx-th-resize {
-    height: 100%;
+/* Manejador de redimensionamiento */
+.resize-handle {
     width: 5px;
+    height: 100%;
     position: absolute;
     right: 0;
     top: 0;
     cursor: col-resize;
-    border-right: 1px solid #dddddd;
+    background-color: transparent;
 }
 
-.ngx-table-bordered .ngx-th-resize {
-    border-right: 1px solid transparent;
+.ngx-table th:hover .resize-handle {
+    border-left: 1px solid var(--ngx-table-border-color, #d1d9e0b3);
+}
+
+*::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+*::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: transparent;
+    transition: background 0.3s ease-in-out;
+    border-radius: 2px;
+}
+
+*:hover::-webkit-scrollbar-thumb {
+    background: var(--neutral-7, #8c8c8c);
 }

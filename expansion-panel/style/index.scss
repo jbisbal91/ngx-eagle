@@ -7,6 +7,7 @@
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
     0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
   margin-bottom: 8px;
+  background-color: var(--ngx-accordion-bg) !important;
 }
 
 .exp-panel .rotate-left {
@@ -65,17 +66,18 @@
 }
 
 .border-bottom-header {
-  border-bottom: 1px solid currentColor;
+  border-bottom: 1px solid var(--ngx-border-color);
 }
 
 .border-bottom-exp-item {
-  border-bottom: 1px solid currentColor;
+  border-bottom: 1px solid var(--ngx-border-color);;
 }
 
 .exp-panel.bordered-type {
-  border-left: 1px solid currentColor;
-  border-right: 1px solid currentColor;
-  border-top: 0.5px solid currentColor;
+  border-left: 1px solid var(--ngx-border-color);
+  border-right: 1px solid var(--ngx-border-color);
+  border-top: 0.5px solid var(--ngx-border-color);
+  background-color: var(--ngx-accordion-bg) !important;
 }
 
 .exp-panel>.header.expand-icon-position {

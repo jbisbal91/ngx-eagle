@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://xdevsolutions.com/">
-    <img width="230" src="assets/images/favicon.png">
+  <a href="https://ngx-eagle.web.app/">
+    <img width="230" src="https://firebasestorage.googleapis.com/v0/b/ngx-eagle.appspot.com/o/ngx-eagle-logo-fill.svg?alt=media&token=cbb80cc4-3a67-4863-9418-2cfe0de95207">
   </a>
 </p>
 

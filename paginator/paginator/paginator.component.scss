@@ -1,0 +1,70 @@
+:host {
+    display: block;
+    width: fit-content;
+    font-size: 14px;
+}
+
+.ngx-paginator {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.ngx-paginator select {
+    height: 32px;
+    border-radius: 2px;
+    padding: 4px 8px;
+}
+
+.ngx-paginator label {
+    margin-right: 8px;
+    font-size: inherit;
+}
+
+.ngx-paginator .ngx-paginator-select {
+    height: var(--ngx-paginator-select-height, 40px);
+    width: var(--ngx-paginator-select-width, 80px);
+    border-color: var(--ngx-paginator-select-border, #9E9E9E);
+    font-size: inherit;
+}
+
+.ngx-paginator .ngx-paginator-range-label {
+    font-size: inherit;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.ngx-paginator .skip-first,
+.ngx-paginator .skip-last,
+.ngx-paginator .skip-previous,
+.ngx-paginator .skip-next {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: var(--ngx-paginator-skip-size, 30px);
+    height: var(--ngx-paginator-skip-size, 30px);
+    color: var(--ngx-paginator-skip-color, #5f6368);
+    transition: all 0.2s ease-in-out;
+    border-radius: 50%;
+
+    svg {
+        width: var(--ngx-paginator-skip-svg-size, 24px);
+        height: var(--ngx-paginator-skip-svg-size, 24px);
+    }
+
+    &:hover {
+        color: var(--ngx-paginator-skip-color-hover, #5f6368);
+        background-color: var(--ngx-paginator-skip-bg-hover, #eee);
+    }
+
+    &.disabled {
+        cursor: no-drop;
+        opacity: 0.5;
+
+        &:hover {
+            background-color: transparent;
+        }
+    }
+}

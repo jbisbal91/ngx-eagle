@@ -1,0 +1,50 @@
+:host {
+    background-color: var(--ngx-option-bg-color, #FFFFFF);
+}
+
+:host:hover {
+    background-color: var(--ngx-option-bg-color-hover, #F5F5F5);
+}
+
+.ngx-option {
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    width: 100%;
+    background-color: inherit;
+    transition: background-color 0.3s ease;
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.ngx-option-disabled {
+    color: var(--ngx-option-color-disabled, #9E9E9E);
+    pointer-events: none;
+}
+
+.ngx-option-selected {
+    background-color: var(--ngx-option-bg-color-selected, #F5F5F5);
+    color: var(--ngx-option-color-selected, #1890FF);
+}
+
+.content {
+    padding: 0 0.75rem;
+}
+
+.ngx-option:hover {
+    cursor: pointer;
+    background-color: inherit;
+}
+
+.ngx-option input[type="checkbox"]:checked {
+    background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgLTk2MCA5NjAgOTYwIiB3aWR0aD0iMjQiPjxwYXRoIGQ9Ik0zODItMjQwIDE1NC00NjhsNTctNTcgMTcxIDE3MSAzNjctMzY3IDU3IDU3LTQyNCA0MjRaIiBmaWxsPSIjZmZmZmZmIi8+PC9zdmc+) no-repeat center;
+    border: none;
+}
+
+.ngx-option input[type="checkbox"] {
+    margin-left: 0.75rem;
+    height: 1.125rem;
+    width: 1.125rem;
+    cursor: pointer;
+}

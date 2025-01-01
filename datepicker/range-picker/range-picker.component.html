@@ -1,0 +1,93 @@
+<div #calendarRef class="calendar" ngx-dropdown [DropdownMenu]="calendarTemplate" (openChange)="openChange($event)">
+        <input #startDate type="text" onclick="event.preventDefault()" [value]="range.startDate | date: format"
+                [placeholder]="format" (change)="updateEndDateMin()" (input)="setStartDate($event.target)">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="64px" fill="currentColor">
+                <path d="m700-300-57-56 84-84H120v-80h607l-83-84 57-56 179 180-180 180Z" />
+        </svg>
+        <input #endDate type="text" onclick="event.preventDefault()" [value]="range.endDate | date: format"
+                [placeholder]="format" [min]="range.startDate" (input)="setEndDate($event.target)">
+        <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px" fill="currentColor">
+                <path
+                        d="M320-400q-17 0-28.5-11.5T280-440q0-17 11.5-28.5T320-480q17 0 28.5 11.5T360-440q0 17-11.5 28.5T320-400Zm160 0q-17 0-28.5-11.5T440-440q0-17 11.5-28.5T480-480q17 0 28.5 11.5T520-440q0 17-11.5 28.5T480-400Zm160 0q-17 0-28.5-11.5T600-440q0-17 11.5-28.5T640-480q17 0 28.5 11.5T680-440q0 17-11.5 28.5T640-400ZM200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm0 0v-80 80Z" />
+        </svg>
+</div>
+
+<ng-template #calendarTemplate>
+        <div class="calendar-display" [style.width]="calendarWidth">
+                <div class="calendar-header">
+                        <button (click)="prevYear()">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960"
+                                        width="20px" fill="currentColor">
+                                        <path
+                                                d="M220-240v-480h80v480h-80Zm520 0L380-480l360-240v480Zm-80-240Zm0 90v-180l-136 90 136 90Z" />
+                                </svg>
+                        </button>
+                        <button (click)="prevMonth()">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960"
+                                        width="16px" fill="currentColor">
+                                        <path d="M640-80 240-480l400-400 71 71-329 329 329 329-71 71Z" />
+                                </svg>
+                        </button>
+                        <button [class.active]="showMonths" (click)="showMonths=!showMonths;showYears=false">
+                                {{ months[currentMonth] }}
+                        </button>
+                        <button [class.active]="showYears"
+                                (click)="showYears=!showYears;showMonths=false;scrollToActiveYear()">
+                                {{ currentYear }}
+                        </button>
+
+                        <button (click)="nextMonth()">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960"
+                                        width="16px" fill="currentColor">
+                                        <path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z" />
+                                </svg>
+                        </button>
+                        <button (click)="nextYear()">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 -960 960 960"
+                                        width="20px" fill="currentColor">
+                                        <path
+                                                d="M660-240v-480h80v480h-80Zm-440 0v-480l360 240-360 240Zm80-240Zm0 90 136-90-136-90v180Z" />
+                                </svg>
+                        </button>
+                </div>
+
+                <ng-container *ngIf="!showMonths && !showYears">
+                        <table [class.sunday-first]="firstDayOfWeek===0" [class.sunday-last]="firstDayOfWeek===1">
+                                <thead>
+                                        <tr>
+                                                <th *ngFor="let day of days">{{ day }}</th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                        <tr *ngFor="let week of calendar">
+                                                <td *ngFor="let date of week" [class.selected]="isSelected(date)"
+                                                        [class.current-selected]="isStartDate(date) && !range.endDate"
+                                                        [class.today]="isToday(date)"
+                                                        [class.start-date]="isStartDate(date) && range.endDate"
+                                                        [class.end-date]="isEndDate(date) && range.startDate"
+                                                        (click)="selectDate(date)">
+                                                        {{ date.getDate() }}
+                                                </td>
+                                        </tr>
+                                </tbody>
+                        </table>
+                </ng-container>
+                <ng-container *ngIf="showMonths">
+                        <div class="month-year">
+                                <button [class.active]="currentMonth  === i" *ngFor="let month of months; let i = index"
+                                        (click)="currentMonth = i; generateCalendar()">
+                                        {{ month }}
+                                </button>
+                        </div>
+                </ng-container>
+                <ng-container *ngIf="showYears">
+                        <div class="month-year">
+                                <button [id]="'year-' + year" [class.active]="currentYear === year"
+                                        *ngFor="let year of years" (click)="currentYear = year; generateCalendar()">
+                                        {{ year }}
+                                </button>
+                        </div>
+                </ng-container>
+                <button class="btn_today" *ngIf="todayButton" (click)="selectToday()">{{todayLabel}}</button>
+        </div>
+</ng-template>

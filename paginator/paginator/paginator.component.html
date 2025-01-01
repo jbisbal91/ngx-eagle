@@ -1,0 +1,42 @@
+<div class="ngx-paginator">
+  <ng-container *ngIf="!hidePageSize">
+    <label *ngIf="paginatorIntl.itemsPerPageLabel">
+      {{ paginatorIntl.itemsPerPageLabel }}
+    </label>
+    <select [(ngModel)]="pageSize" (change)="changePageSize($event)">
+      <option *ngFor="let pSize of pageSizeOptions" [value]="pSize">
+        {{ pSize }}
+      </option>
+    </select>
+  </ng-container>
+
+  <span class="ngx-paginator-range-label">{{
+    paginatorIntl.getRangeLabel(pageStatus)
+    }}</span>
+
+  <span class="skip-first" *ngIf="showExtremeButtons" [class.disabled]="!disabledPrevious()" (click)="onFirst()">
+    <svg height="24" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor">
+      <path d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6zM6 6h2v12H6z"></path>
+    </svg>
+  </span>
+
+  <span class="skip-previous" [class.disabled]="!disabledPrevious()" (click)="onPrevious()">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor">
+      <path d="M560-240 320-480l240-240 56 56-184 184 184 184-56 56Z" />
+    </svg>
+  </span>
+
+  <span class="skip-next" (click)="onNext()" [class.disabled]="!disabledNex()">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"
+      fill="var(--ngx-paginator-skip, currentColor)">
+      <path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z" />
+    </svg>
+  </span>
+
+  <span class="skip-last" *ngIf="showExtremeButtons" [class.disabled]="!disabledNex()" (click)="onLast()">
+    <svg viewBox="0 0 24 24" height="24" focusable="false" aria-hidden="true" width="24"
+      fill="var(--ngx-paginator-skip-last, currentColor)">
+      <path d="M5.59 7.41L10.18 12l-4.59 4.59L7 18l6-6-6-6zM16 6h2v12h-2z"></path>
+    </svg>
+  </span>
+</div>

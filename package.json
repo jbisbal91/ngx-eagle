@@ -1,16 +1,17 @@
 {
   "name": "ngx-eagle",
-  "version": "0.7.8",
+  "version": "0.9.2",
   "license": "MIT",
   "description": "UI component infrastructure and Design components for mobile and desktop Angular web applications.",
   "peerDependencies": {
-    "@angular/common": "^16.2.0",
-    "@angular/core": "^16.2.0"
+    "@angular/common": "^17.3.12",
+    "@angular/core": "^17.3.12"
   },
   "dependencies": {
+    "ngx-eagle": "file:",
     "tslib": "^2.3.0"
   },
-  "homepage": "https://xdevsolutions.com",
+  "homepage": "https://ngx-eagle.web.app",
   "repository": {
     "type": "git",
     "url": "https://github.com/jbisbal91/ngx-eagle"
@@ -31,184 +32,27 @@
     "card",
     "carousel",
     "checkbox",
+    "date picker",
     "dialog",
     "divider",
     "drawer",
     "expansion panel",
     "grid",
+    "image-cropper",
     "input",
-    "pie chart",
+    "loading",
+    "paginator",
     "progress",
     "radio button",
     "rate",
+    "resize",
     "select",
+    "signature",
     "switch",
     "table",
     "tabs",
     "tags",
-    "timeline"
-  ],
-  "module": "fesm2022/ngx-eagle.mjs",
-  "typings": "index.d.ts",
-  "exports": {
-    "./package.json": {
-      "default": "./package.json"
-    },
-    ".": {
-      "types": "./index.d.ts",
-      "esm2022": "./esm2022/ngx-eagle.mjs",
-      "esm": "./esm2022/ngx-eagle.mjs",
-      "default": "./fesm2022/ngx-eagle.mjs"
-    },
-    "./avatar": {
-      "types": "./avatar/index.d.ts",
-      "esm2022": "./esm2022/avatar/ngx-eagle-avatar.mjs",
-      "esm": "./esm2022/avatar/ngx-eagle-avatar.mjs",
-      "default": "./fesm2022/ngx-eagle-avatar.mjs"
-    },
-    "./badge": {
-      "types": "./badge/index.d.ts",
-      "esm2022": "./esm2022/badge/ngx-eagle-badge.mjs",
-      "esm": "./esm2022/badge/ngx-eagle-badge.mjs",
-      "default": "./fesm2022/ngx-eagle-badge.mjs"
-    },
-    "./button": {
-      "types": "./button/index.d.ts",
-      "esm2022": "./esm2022/button/ngx-eagle-button.mjs",
-      "esm": "./esm2022/button/ngx-eagle-button.mjs",
-      "default": "./fesm2022/ngx-eagle-button.mjs"
-    },
-    "./card": {
-      "types": "./card/index.d.ts",
-      "esm2022": "./esm2022/card/ngx-eagle-card.mjs",
-      "esm": "./esm2022/card/ngx-eagle-card.mjs",
-      "default": "./fesm2022/ngx-eagle-card.mjs"
-    },
-    "./carousel": {
-      "types": "./carousel/index.d.ts",
-      "esm2022": "./esm2022/carousel/ngx-eagle-carousel.mjs",
-      "esm": "./esm2022/carousel/ngx-eagle-carousel.mjs",
-      "default": "./fesm2022/ngx-eagle-carousel.mjs"
-    },
-    "./checkbox": {
-      "types": "./checkbox/index.d.ts",
-      "esm2022": "./esm2022/checkbox/ngx-eagle-checkbox.mjs",
-      "esm": "./esm2022/checkbox/ngx-eagle-checkbox.mjs",
-      "default": "./fesm2022/ngx-eagle-checkbox.mjs"
-    },
-    "./dialog": {
-      "types": "./dialog/index.d.ts",
-      "esm2022": "./esm2022/dialog/ngx-eagle-dialog.mjs",
-      "esm": "./esm2022/dialog/ngx-eagle-dialog.mjs",
-      "default": "./fesm2022/ngx-eagle-dialog.mjs"
-    },
-    "./divider": {
-      "types": "./divider/index.d.ts",
-      "esm2022": "./esm2022/divider/ngx-eagle-divider.mjs",
-      "esm": "./esm2022/divider/ngx-eagle-divider.mjs",
-      "default": "./fesm2022/ngx-eagle-divider.mjs"
-    },
-    "./drawer": {
-      "types": "./drawer/index.d.ts",
-      "esm2022": "./esm2022/drawer/ngx-eagle-drawer.mjs",
-      "esm": "./esm2022/drawer/ngx-eagle-drawer.mjs",
-      "default": "./fesm2022/ngx-eagle-drawer.mjs"
-    },
-    "./expansion-panel": {
-      "types": "./expansion-panel/index.d.ts",
-      "esm2022": "./esm2022/expansion-panel/ngx-eagle-expansion-panel.mjs",
-      "esm": "./esm2022/expansion-panel/ngx-eagle-expansion-panel.mjs",
-      "default": "./fesm2022/ngx-eagle-expansion-panel.mjs"
-    },
-    "./grid": {
-      "types": "./grid/index.d.ts",
-      "esm2022": "./esm2022/grid/ngx-eagle-grid.mjs",
-      "esm": "./esm2022/grid/ngx-eagle-grid.mjs",
-      "default": "./fesm2022/ngx-eagle-grid.mjs"
-    },
-    "./input": {
-      "types": "./input/index.d.ts",
-      "esm2022": "./esm2022/input/ngx-eagle-input.mjs",
-      "esm": "./esm2022/input/ngx-eagle-input.mjs",
-      "default": "./fesm2022/ngx-eagle-input.mjs"
-    },
-    "./line-chart": {
-      "types": "./line-chart/index.d.ts",
-      "esm2022": "./esm2022/line-chart/ngx-eagle-line-chart.mjs",
-      "esm": "./esm2022/line-chart/ngx-eagle-line-chart.mjs",
-      "default": "./fesm2022/ngx-eagle-line-chart.mjs"
-    },
-    "./pie-chart": {
-      "types": "./pie-chart/index.d.ts",
-      "esm2022": "./esm2022/pie-chart/ngx-eagle-pie-chart.mjs",
-      "esm": "./esm2022/pie-chart/ngx-eagle-pie-chart.mjs",
-      "default": "./fesm2022/ngx-eagle-pie-chart.mjs"
-    },
-    "./progress": {
-      "types": "./progress/index.d.ts",
-      "esm2022": "./esm2022/progress/ngx-eagle-progress.mjs",
-      "esm": "./esm2022/progress/ngx-eagle-progress.mjs",
-      "default": "./fesm2022/ngx-eagle-progress.mjs"
-    },
-    "./radio-button": {
-      "types": "./radio-button/index.d.ts",
-      "esm2022": "./esm2022/radio-button/ngx-eagle-radio-button.mjs",
-      "esm": "./esm2022/radio-button/ngx-eagle-radio-button.mjs",
-      "default": "./fesm2022/ngx-eagle-radio-button.mjs"
-    },
-    "./rate": {
-      "types": "./rate/index.d.ts",
-      "esm2022": "./esm2022/rate/ngx-eagle-rate.mjs",
-      "esm": "./esm2022/rate/ngx-eagle-rate.mjs",
-      "default": "./fesm2022/ngx-eagle-rate.mjs"
-    },
-    "./switch": {
-      "types": "./switch/index.d.ts",
-      "esm2022": "./esm2022/switch/ngx-eagle-switch.mjs",
-      "esm": "./esm2022/switch/ngx-eagle-switch.mjs",
-      "default": "./fesm2022/ngx-eagle-switch.mjs"
-    },
-    "./select": {
-      "types": "./select/index.d.ts",
-      "esm2022": "./esm2022/select/ngx-eagle-select.mjs",
-      "esm": "./esm2022/select/ngx-eagle-select.mjs",
-      "default": "./fesm2022/ngx-eagle-select.mjs"
-    },
-    "./table": {
-      "types": "./table/index.d.ts",
-      "esm2022": "./esm2022/table/ngx-eagle-table.mjs",
-      "esm": "./esm2022/table/ngx-eagle-table.mjs",
-      "default": "./fesm2022/ngx-eagle-table.mjs"
-    },
-    "./tab": {
-      "types": "./tab/index.d.ts",
-      "esm2022": "./esm2022/tab/ngx-eagle-tab.mjs",
-      "esm": "./esm2022/tab/ngx-eagle-tab.mjs",
-      "default": "./fesm2022/ngx-eagle-tab.mjs"
-    },
-    "./tag": {
-      "types": "./tag/index.d.ts",
-      "esm2022": "./esm2022/tag/ngx-eagle-tag.mjs",
-      "esm": "./esm2022/tag/ngx-eagle-tag.mjs",
-      "default": "./fesm2022/ngx-eagle-tag.mjs"
-    },
-    "./timeline": {
-      "types": "./timeline/index.d.ts",
-      "esm2022": "./esm2022/timeline/ngx-eagle-timeline.mjs",
-      "esm": "./esm2022/timeline/ngx-eagle-timeline.mjs",
-      "default": "./fesm2022/ngx-eagle-timeline.mjs"
-    },
-    "./core/services": {
-      "types": "./core/services/index.d.ts",
-      "esm2022": "./esm2022/core/services/ngx-eagle-core-services.mjs",
-      "esm": "./esm2022/core/services/ngx-eagle-core-services.mjs",
-      "default": "./fesm2022/ngx-eagle-core-services.mjs"
-    },
-    "./core/types": {
-      "types": "./core/types/index.d.ts",
-      "esm2022": "./esm2022/core/types/ngx-eagle-core-types.mjs",
-      "esm": "./esm2022/core/types/ngx-eagle-core-types.mjs",
-      "default": "./fesm2022/ngx-eagle-core-types.mjs"
-    }
-  }
+    "timeline",
+    "tooltip"
+  ]
 }

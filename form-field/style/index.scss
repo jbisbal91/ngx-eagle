@@ -1,0 +1,22 @@
+.ngx-form-field {
+        display: inline-flex;
+        position: relative;
+        width: inherit;
+
+        & .ngx-prefix,
+        & .ngx-suffix {
+                top: 0;
+                position: absolute;
+                height: 100%;
+                align-items: center;
+                display: flex;
+        }
+
+        & .ngx-prefix {
+                left: 6px;
+        }
+
+        & .ngx-suffix {
+                right: 6px;
+        }
+}

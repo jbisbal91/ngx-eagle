@@ -1,0 +1,19 @@
+<div class="ngx-outlined-select-field">
+  <input class="ngx-nat-input" #input type="text" [pattern]="pattern" [placeholder]="placeholder"
+    [value]="internalValue" [disabled]="disabled" (input)="onInput($event)" (focus)="onFocus($event)"
+    (blur)="onBlur($event)" (keydown)="onKeyDown($event)" [readonly]="!autocomplete" [class.invalid]="!valid()" />
+  <div class="suffix" *ngIf="suffix" [class.invalid]="!valid()">
+    <span *ngIf="typeOf(suffix) === 'string'">{{ suffix }}</span>
+    <ng-template *ngIf="typeOf(suffix) === 'object'" [ngTemplateOutlet]="suffix"></ng-template>
+  </div>
+  <div class="arrow-drop-down" *ngIf="!suffix" [class.invalid]="!valid()">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
+      <path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" />
+    </svg>
+  </div>
+</div>
+<div #options_container class="ngx-options-container" [class.position-bottom]="optPos === 'bottom'"
+  [class.position-top]="optPos === 'top'" [class.ngx-options-visible]="isFocused || isOpenMultipleMode"
+  *ngIf="!disabled">
+  <ng-content></ng-content>
+</div>

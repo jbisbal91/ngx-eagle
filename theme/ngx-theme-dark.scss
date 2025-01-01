@@ -1,7 +1,66 @@
 @import "../badge/theme/ngx-theme-dark";
 @import "../card/theme/ngx-theme-dark";
 @import "../grid/theme/ngx-theme-dark";
-@import "../line-chart/theme/ngx-theme-dark";
-@import "../pie-chart/theme/ngx-theme-dark";
 @import "../progress/theme/ngx-theme-dark";
-@import "../tab/theme/ngx-theme-dark";
+
+:root[theme="dark"] {
+  //--Base Color Palettes--//
+  //primary
+  --primary-1: #111d2c;
+  --primary-2: #112a45;
+  --primary-3: #15395b;
+  --primary-4: #164c7e;
+  --primary-5: #1765ad;
+  --primary-6: #177ddc;
+  --primary-7: #3c9ae8;
+  --primary-8: #65b7f3;
+  --primary-9: #8dcff8;
+  --primary-10: #b7e3fa;
+
+  //red
+  --red-1: #2a1215;
+  --red-2: #431418;
+  --red-3: #58181c;
+  --red-4: #791a1f;
+  --red-5: #a61d24;
+  --red-6: #d32029;
+  --red-7: #e84749;
+  --red-8: #f37370;
+  --red-9: #f89f9a;
+  --red-10: #fac8c3;
+
+  //green
+  --green-1: #162312;
+  --green-2: #1d3712;
+  --green-3: #274916;
+  --green-4: #306317;
+  --green-5: #3c8618;
+  --green-6: #49aa19;
+  --green-7: #6abe39;
+  --green-8: #8fd460;
+  --green-9: #b2e58b;
+  --green-10: #d5f2bb;
+
+
+  --cropper-overlay-color: #595959;
+  --ngx-spinner-bars-bg: #f5f5f5;
+  --ngx-border-color: #3D444D;
+
+
+/* Variables for ngx-drawer styling */
+--ngx-drawer-bg: #0D1117; /* Background color of the drawer */
+--ngx-drawer-handle-bg: #DFE4E9; /* Background color of the handle */
+--ngx-drawer-close-border: #DFE4E9; /* Border color of the close button */
+--ngx-drawer-close-color: #DFE4E9; /* Icon color of the close button */
+
+/* Variables for ngx-accordion styling */
+--ngx-accordion-bg: #0D1117; /* Background color of the accordion */
+
+/* Variables for ngx-tag styling */
+--ngx-tag-bg: #0D1117; /* Background color of the tag */
+
+/* Variables for ngx-table styling */
+--ngx-table-thead-bg: #151B23; /* Background color of the thead */
+--ngx-table-row-bg: rgba(21, 27, 35, 0.5); /* Background color of the row */
+--ngx-table-border-color: #3D444D;
+}

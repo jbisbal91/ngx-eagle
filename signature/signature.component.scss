@@ -1,0 +1,87 @@
+:host {
+        display: block;
+        width: 100%;
+        height: 100%;
+}
+
+.signature-wrapper-content {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        /* Asegurar que el contenedor ocupe el 100% de su padre */
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+
+        .signature-pad {
+                position: relative;
+                width: 100%;
+                aspect-ratio: 16 / 9;
+                /* Mantener una relación de aspecto fija, ajustable según lo necesites */
+
+                canvas {
+                        width: 100%;
+                        height: 100%;
+                        /* Asegurar que el canvas también se ajuste */
+                        border: 1px solid var(--ngx-border-color, #d1d9e0b3);
+                        box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1);
+                        cursor: crosshair;
+                        position: absolute;
+                        z-index: 1;
+                }
+
+                .sig-icon {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        opacity: 0.3;
+                }
+        }
+
+
+}
+
+.signature-action {
+        display: flex;
+        justify-content: space-between;
+
+        .clean-signature {
+                right: 1rem;
+                top: 1rem;
+                cursor: pointer;
+                transition: opacity 0.3s;
+                opacity: 0.6;
+
+                &:hover {
+                        opacity: 1;
+                }
+
+                &.disabled {
+                        pointer-events: none;
+                        opacity: 0.3;
+                }
+        }
+
+        .color-palette {
+                display: flex;
+                justify-content: flex-end;
+                width: 100%;
+                gap: 8px;
+                height: 24px;
+                align-items: center;
+        }
+
+        .color-palette button {
+                width: 16px !important;
+                height: 16px !important;
+                padding: 0 !important;
+                border: none;
+                border-radius: 50%;
+                cursor: pointer;
+        }
+
+        .color-palette button.active {
+                border: 2px solid var(--primary-6) !important;
+        }
+}

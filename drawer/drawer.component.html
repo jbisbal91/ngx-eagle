@@ -1,0 +1,26 @@
+<div #backdrop *ngIf="internalVisible" (click)="closeDrawer($event)" class="ngx-drawer-backdrop">
+        <div #drawer class="ngx-drawer" [class.ngx-drawer-placement-top]="placement === 'top'"
+                [class.ngx-drawer-placement-right]="placement === 'right'"
+                [class.ngx-drawer-placement-bottom]="placement === 'bottom'"
+                [class.ngx-drawer-placement-left]="placement === 'left'">
+                <div class="handle" [class.handle-top]="placement==='bottom'" [class.handle-bottom]="placement==='top'"
+                        *ngIf="closeMobile" touch (swipeDown)="closingByTouch('down')" (swipeUp)="closingByTouch('up')"
+                        (click)="closingAction()">
+                        <div class="handle-bar-close"></div>
+                </div>
+                <button (click)="closingAction()" class="btn_close" *ngIf="!closeMobile && closeDesktop">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                                fill="var(--ngx-drawer-close-color, #DFE4E9)">
+                                <path
+                                        d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                        </svg>
+                </button>
+                <ng-content></ng-content>
+                <ng-container *ngIf="templateContent">
+                        <ng-container *ngTemplateOutlet="templateContent"></ng-container>
+                </ng-container>
+                <ng-container *ngIf="componentContent">
+                        <ng-container *ngComponentOutlet="componentContent"></ng-container>
+                </ng-container>
+        </div>
+</div>

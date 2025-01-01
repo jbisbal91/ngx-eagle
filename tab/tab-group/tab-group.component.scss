@@ -1,0 +1,122 @@
+:host {
+        &.ngx-tab-position-left,
+        &.ngx-tab-position-right {
+                display: flex;
+                gap: 16px;
+        }
+
+        &.ngx-tab-position-right {
+                direction: rtl;
+        }
+}
+
+.ngx-tab-position-left,
+.ngx-tab-position-right {
+        display: flex;
+}
+
+.ngx-tab-position-right {
+        direction: rtl;
+}
+
+ul {
+        padding: 0px !important;
+        z-index: 50;
+        display: flex;
+        list-style-type: none;
+        margin: 0px;
+        position: relative;
+        gap: 2rem;
+}
+
+ul.ngx-tab-group-start {
+        justify-content: flex-start !important;
+}
+
+ul.ngx-tab-group-center {
+        justify-content: center !important;
+}
+
+ul.ngx-tab-group-end {
+        justify-content: flex-end !important;
+}
+
+ul.ngx-tab-position-right,
+ul.ngx-tab-position-left {
+        display: block;
+}
+
+ul.ngx-tab-position-top {
+        border-bottom: 1px solid var(--ngx-bc,#bfbfbf);
+}
+
+ul.ngx-tab-position-left {
+        border-right: 1px solid var(--ngx-bc,#bfbfbf);
+        width: max-content;
+}
+
+ul.ngx-tab-position-right {
+        border-left: 1px solid var(--ngx-bc,#bfbfbf);
+        width: max-content;
+}
+
+ul>li {
+        display: flex;
+        justify-content: center;
+        max-width: max-content;
+        min-width: max-content;
+        font-weight: 400;
+        height: 2.5rem;
+        cursor: pointer;
+        align-items: center;
+        gap: 8px;
+        padding: 8px;
+        transition: color 0.3s ease-in-out;
+}
+
+ul>li.disabled {
+        opacity: 0.5;
+        cursor: no-drop;
+}
+
+ul>li.disabled:hover {
+        color: inherit;
+}
+
+ul>li:hover {
+        color: var(--primary-6);
+}
+
+ul>li.ngx-tab-position-top {
+        border-bottom: 4px solid transparent;
+}
+
+ul>li.ngx-tab-position-left {
+        border-right: 4px solid transparent;
+}
+
+ul>li.active.ngx-tab-position-top {
+        border-bottom: 4px solid var(--primary-6);
+        color: var(--primary-6);
+        opacity: 1;
+}
+
+ul>li.active.ngx-tab-position-left {
+        border-right: 4px solid var(--primary-6);
+        color: var(--primary-6);
+        opacity: 1;
+}
+
+ul>li.active.ngx-tab-position-right {
+        border-left: 4px solid var(--primary-6);
+        color: var(--primary-6);
+        opacity: 1;
+}
+
+
+.ngx-tab-content-holder {
+        flex: auto;
+        min-width: 0;
+        min-height: 0;
+        margin-top: 8px;
+}

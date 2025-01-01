@@ -1,0 +1,18 @@
+<div
+  *ngIf="isVisible"
+  (click)="selectedOption(this)"
+  #content
+  class="ngx-option"
+  [class.ngx-option-selected]="selected"
+  [class.ngx-option-disabled]="disabled"
+>
+  <input
+    *ngIf="checked"
+    type="checkbox"
+    [checked]="selected"
+    [disabled]="disabled"
+  />
+  <div class="content">
+    <ng-content></ng-content>
+  </div>
+</div>

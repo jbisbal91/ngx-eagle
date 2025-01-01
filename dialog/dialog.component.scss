@@ -1,0 +1,97 @@
+.ngx-dialog-content {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  @keyframes dialog-open {
+    0% {
+      transform: translateX(50px);
+    }
+    100% {
+      transform: none;
+    }
+  }
+  animation: dialog-open 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border-radius: var(--dialog-content-border-radius, 4px);
+  box-sizing: border-box;
+  box-shadow: var(--dialog-content-box-shadow, 0px 11px 19px rgba(15, 20, 58, 0.14));
+  background: var(--dialog-content-bg, #fff);
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  &.ngx-dialog-resizable {
+    resize: both;
+  }
+}
+
+.ngx-dialog-backdrop {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  padding: 30px;
+  z-index: var(--dialog-backdrop-z-index, 1050);
+  background-color: transparent;
+
+  &.ngx-dialog-backdrop-visible {
+    background: var(--dialog-backdrop-bg, rgba(0, 0, 0, 0.32));
+  }
+
+  animation: dialog-open-backdrop 0.3s;
+
+  @keyframes dialog-open-backdrop {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+.ngx-drag-marker {
+  position: absolute;
+  left: 0;
+  top: 0;
+  cursor: move;
+  width: 100%;
+  height: var(--dialog-drag-marker-height, 10px);
+}
+
+.ngx-close-dialog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  cursor: pointer;
+  top: var(--dialog-close-btn-top, 6px);
+  right: var(--dialog-close-btn-right, 10px);
+  width: var(--dialog-close-btn-size, 30px);
+  height: var(--dialog-close-btn-size, 30px);
+  color: var(--dialog-close-btn-color, #5f6368);
+  transition: all 0.2s ease-in-out;
+  border-radius: 50%;
+
+  svg {
+    width: var(--dialog-close-svg-size, 12px);
+    height: var(--dialog-close-svg-size, 12px);
+  }
+
+  &:hover {
+    color: var(--dialog-close-btn-color-hover, #5f6368);
+    background-color: var(--dialog-close-btn-bg-hover, #eee);
+  }
+}
+
+
+body.ngx-dialog-hidden {
+  overflow: hidden;
+}

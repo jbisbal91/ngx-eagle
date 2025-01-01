@@ -1,0 +1,37 @@
+.ngx-menu {
+        background-color: var(--ngx-menu-bc, #ffffff);
+        box-sizing: border-box;
+        max-height: 15rem;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        pointer-events: auto;
+        border-radius: 4px;
+        scrollbar-width: none;
+        box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px #00000014, 0 9px 28px 8px #0000000d;
+}
+
+.ngx-menu-item {
+        display: flex;
+        align-items: center;
+        height: 32px;
+        width: 100%;
+        background-color: inherit;
+        transition: background-color 0.3s ease;
+        overflow-x: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        padding-left: 12px;
+        padding-right: 12px;
+
+        &:hover {
+                cursor: pointer;
+                background-color: var(--primary-2);
+                color: var(--primary-6);
+        }
+}
+
+.dropdown-content {
+        z-index: 1050;
+}
